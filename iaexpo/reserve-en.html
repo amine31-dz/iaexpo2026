@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Book a booth | IA Expo 2026</title>
+  <meta name="description" content="Exhibitor order form + PDF."/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script defer src="assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body data-page="reserve">
+  
+<header>
+  <div class="container">
+    <div class="navbar">
+      <a class="brand" href="index-en.html">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div>IA Expo 2026</div>
+          <div class="small">Star Event Agency · Oran</div>
+        </div>
+      </a>
+      <nav class="navlinks" aria-label="Navigation">
+        <a data-nav href="index-en.html">Home</a>
+<a data-nav href="about-en.html">About</a>
+<a data-nav href="services-en.html">Services</a>
+<a data-nav href="expo-en.html">AI Expo 2026</a>
+<a data-nav href="gallery-en.html">Gallery</a>
+<a data-nav href="reserve-en.html">Book a booth</a>
+<a data-nav href="contact-en.html">Contact</a>
+        <div class="lang"><a class="pill" href="reserve.html"><strong>FR</strong></a><span class="pill">EN</span><a class="pill" href="reserve-ar.html"><strong>AR</strong></a></div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+  <main class="container">
+    
+<section class="hero">
+  <div class="kicker"><span class="dot"></span> IA Expo 2026</div>
+  <h1>Book a booth</h1>
+  <p class="lead">Exhibitor order form — automatic totals + PDF quote.</p>
+</section>
+
+<section class="section">
+  <div class="notice"><b>Netlify Forms:</b> Direct submission via Netlify Forms + optional browser PDF.</div>
+</section>
+
+<section class="section">
+  <div class="card"><div class="inner">
+    <div class="stepper"><div class="step"><div class="n">1</div><div>Exhibitor</div></div><div class="step"><div class="n">2</div><div>Booth</div></div><div class="step"><div class="n">3</div><div>Type</div></div><div class="step"><div class="n">4</div><div>Options</div></div><div class="step"><div class="n">5</div><div>Staff</div></div><div class="step"><div class="n">6</div><div>Recap</div></div><div class="step"><div class="n">7</div><div>Confirm</div></div></div>
+
+    <div style="margin-top:14px">
+      <div data-step="1">
+        <h2>Exhibitor</h2>
+        <div class="form">
+          <div class="row">
+            <div class="field span-6"><label for="company">Company *</label><input id="company" type="text"/></div>
+            <div class="field span-6"><label for="contactPerson">Contact person</label><input id="contactPerson" type="text"/></div>
+            <div class="field span-8"><label for="address">Address</label><input id="address" type="text"/></div>
+            <div class="field span-4"><label for="phone">Phone *</label><input id="phone" type="tel" placeholder="+213 ..."/></div>
+            <div class="field span-6"><label for="email">Email *</label><input id="email" type="email" placeholder="name@company.com"/></div>
+          </div>
+        </div>
+      </div>
+
+      <div data-step="2" class="hidden">
+        <h2>Booth</h2>
+        <div class="grid">
+          <div class="col-6"><div class="card"><div class="inner">
+            <div class="kicker"><span class="dot"></span> Standard booth</div>
+            <p class="small">14 500 DA / m² (HT)</p>
+            <div class="field">
+              <label for="standardSurface">Standard size</label>
+              <select id="standardSurface"><option value="0">—</option><option value="9">9 m²</option><option value="12">12 m²</option><option value="16">16 m²</option><option value="24">24 m²</option><option value="36">36 m²</option><option value="48">48 m²</option></select>
+            </div>
+          </div></div></div>
+
+          <div class="col-6"><div class="card"><div class="inner">
+            <div class="kicker"><span class="dot"></span> Custom booth (50–800 m²)</div>
+            <p class="small">12 500 DA / m² (HT)</p>
+            <div class="field">
+              <label for="customSurface">Custom area (m²)</label>
+              <input id="customSurface" type="number" min="50" max="800" step="1" placeholder="50–800"/>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="badges" style="margin-top:12px">
+          <span class="badge">Mode:</span>
+          <label class="badge"><input type="radio" name="standMode" value="standard" checked/> Standard booth</label>
+          <label class="badge"><input type="radio" name="standMode" value="custom"/> Custom booth (50–800 m²)</label>
+        </div>
+      </div>
+
+      <div data-step="3" class="hidden">
+        <h2>Booth type</h2>
+        <div class="badges">
+          <label class="badge"><input type="radio" name="standType" value="Standard" checked/> Standard</label>
+          <label class="badge"><input type="radio" name="standType" value="Corner (Angle)"/> Corner (Angle)</label>
+          <label class="badge"><input type="radio" name="standType" value="Îlot"/> Island</label>
+        </div>
+      </div>
+
+      <div data-step="4" class="hidden">
+        <h2>Options</h2>
+        <table class="table">
+          <thead><tr><th>Options</th><th class="right">Qty</th></tr></thead>
+          <tbody>
+            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_vip"/><label for="opt_vip">Salon VIP</label><span class="badge mono">45 000 DA (HT)</span></div></td><td class="right"><input id="qty_vip" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
+            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_storage"/><label for="opt_storage">Arrière-boutique</label><span class="badge mono">55 000 DA (HT)</span></div></td><td class="right"><input id="qty_storage" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
+            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_tv"/><label for="opt_tv">TV écran 55 cm sur pied</label><span class="badge mono">14 500 DA (HT)</span></div></td><td class="right"><input id="qty_tv" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
+            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_led_poster"/><label for="opt_led_poster">LED Poster P3 (192×64)</label><span class="badge mono">100 000 DA (HT)</span></div></td><td class="right"><input id="qty_led_poster" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
+            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_wall_2"/><label for="opt_wall_2">Mur LED indoor 2 m²</label><span class="badge mono">350 000 DA (HT)</span></div></td><td class="right"><input id="qty_wall_2" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
+            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_wall_6"/><label for="opt_wall_6">Mur LED indoor 6 m²</label><span class="badge mono">750 000 DA (HT)</span></div></td><td class="right"><input id="qty_wall_6" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div data-step="5" class="hidden">
+        <h2>Hosts / Hostesses</h2>
+        <div class="grid">
+          <div class="col-6"><div class="card"><div class="inner">
+            <div class="kicker"><span class="dot"></span> Hosts / Hostesses</div>
+            <p class="small">5 500 DA / day / person (HT)</p>
+            <div class="row">
+              <div class="field span-6"><label for="hosts">People</label><input id="hosts" type="number" min="0" step="1" value="0"/></div>
+              <div class="field span-6"><label for="hostDays">Days (1–4)</label><input id="hostDays" type="number" min="0" max="4" step="1" value="0"/></div>
+            </div>
+          </div></div></div>
+
+          <div class="col-6"><div class="card"><div class="inner">
+            <h2 style="margin-top:0">Rule</h2>
+            <p class="small mono">Staff total = people × days × 5,500 (excl. VAT)</p>
+          </div></div></div>
+        </div>
+      </div>
+
+      <div data-step="6" class="hidden">
+        <h2>Summary</h2>
+        <div class="grid">
+          <div class="col-6"><div class="card"><div class="inner">
+            <div class="kicker"><span class="dot"></span> Exhibitor</div>
+            <div class="small" style="margin-top:10px">
+              <div><b id="sum_company"></b></div>
+              <div id="sum_contact"></div>
+              <div id="sum_phone"></div>
+              <div id="sum_email"></div>
+              <div id="sum_address"></div>
+            </div>
+            <hr class="sep"/>
+            <div class="kicker"><span class="dot"></span> Booth</div>
+            <div class="badges">
+              <span class="badge" id="sum_surface">—</span>
+              <span class="badge" id="sum_price_m2">—</span>
+              <span class="badge" id="sum_stand_type">—</span>
+            </div>
+            <div class="small" style="margin-top:10px">Selected options:</div>
+            <div id="opt_list" class="badges" style="margin-top:8px"></div>
+          </div></div></div>
+
+          <div class="col-6"><div class="card"><div class="inner">
+            <table class="table">
+              <tbody>
+                <tr><th>Booth total</th><td class="right mono" id="sum_stand_ht">—</td></tr>
+                <tr><th>Options</th><td class="right mono" id="sum_options_ht">—</td></tr>
+                <tr><th>Staff</th><td class="right mono" id="sum_hosts_ht">—</td></tr>
+                <tr><th>Subtotal</th><td class="right mono" id="sum_total_ht">—</td></tr>
+                <tr><th>TVA 19%</th><td class="right mono" id="sum_tva">—</td></tr>
+                <tr><th>Total incl. VAT</th><td class="right mono" id="sum_total_ttc">—</td></tr>
+              </tbody>
+            </table>
+            <div class="cta" style="margin-top:12px">
+              <button class="btn" type="button" id="copyBtn">Copy recap</button>
+              <button class="btn" type="button" id="pdfBtn">Generate PDF quote</button>
+            </div>
+          </div></div></div>
+        </div>
+      </div>
+
+      <div data-step="7" class="hidden">
+        <h2>Confirm</h2>
+        <div class="notice"><b>Emails:</b> contact@iaexpo2026.com · comercial@iaexpo2026.com · sponsor@iaexpo2026.com</div>
+        <div class="field" style="margin-top:12px">
+          <label style="display:flex;gap:10px;align-items:center"><input id="agree" type="checkbox"/><span>I accept the terms and confirm my request.</span></label>
+        </div>
+      </div>
+
+      <hr class="sep"/>
+      <div class="cta" style="justify-content:space-between">
+        <button class="btn" type="button" id="prevBtn">Back</button>
+        <button class="btn primary" type="button" id="nextBtn">Next <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 5l7 7-7 7v-5H4v-4h9V5Z" fill="currentColor"/></svg></button>
+        <button class="btn primary hidden" type="button" id="finishBtn">Send <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 5l7 7-7 7v-5H4v-4h9V5Z" fill="currentColor"/></svg></button>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+
+<form name="exhibitor-en" method="POST" data-netlify="true" action="thank-you-en.html" class="hidden">
+  <input type="hidden" name="form-name" value="exhibitor-en"/>
+  <input type="hidden" name="company"/><input type="hidden" name="contactPerson"/><input type="hidden" name="phone"/>
+  <input type="hidden" name="email"/><input type="hidden" name="address"/>
+  <input type="hidden" name="standMode"/><input type="hidden" name="standardSurface"/><input type="hidden" name="customSurface"/>
+  <input type="hidden" name="standType"/><input type="hidden" name="options"/><input type="hidden" name="hosts"/><input type="hidden" name="hostDays"/>
+  <input type="hidden" name="totalHT"/><input type="hidden" name="tva"/><input type="hidden" name="totalTTC"/>
+</form>
+
+
+  </main>
+  
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="gap:10px">
+          <div class="logo" aria-hidden="true" style="width:28px;height:28px;border-radius:10px"></div>
+          <div>
+            <div style="font-weight:900">IA Expo 2026</div>
+            <div class="small">International AI Expo · Oran · Oct 12–15, 2026 · 10:00–18:00</div>
+          </div>
+        </div>
+        <div class="small" style="margin-top:10px"><a href="brochure-iaexpo2026.pdf">brochure-iaexpo2026.pdf</a></div>
+      </div>
+
+      <div>
+        <div style="font-weight:900;margin-bottom:6px">Quick links</div>
+        <div class="footer-links"><a href="index-en.html">Home</a>
+<a href="about-en.html">About</a>
+<a href="services-en.html">Services</a>
+<a href="expo-en.html">AI Expo 2026</a>
+<a href="gallery-en.html">Gallery</a>
+<a href="reserve-en.html">Book a booth</a>
+<a href="contact-en.html">Contact</a></div>
+      </div>
+
+      <div>
+        <div style="font-weight:900;margin-bottom:6px">Contact</div>
+        <div class="small">
+          <div style="margin:6px 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.3 6.3l2.1-2.1c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.1.8.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4c0-.6.4-1 1-1h2.3c.6 0 1 .4 1 1 0 1.4.3 2.8.8 4.1.1.4 0 .9-.2 1.2L6.6 10.8Z" fill="currentColor"/></svg> <a href="tel:+213771724051">+213 771 724 051</a></div>
+          <div style="margin:6px 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 2v.2l8 5.3 8-5.3V8H4Zm16 10V10.6l-7.4 4.9a1 1 0 0 1-1.2 0L4 10.6V18h16Z" fill="currentColor"/></svg> <a href="mailto:contact@iaexpo2026.com">contact@iaexpo2026.com</a></div>
+          <div style="margin:6px 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 2v.2l8 5.3 8-5.3V8H4Zm16 10V10.6l-7.4 4.9a1 1 0 0 1-1.2 0L4 10.6V18h16Z" fill="currentColor"/></svg> <a href="mailto:comercial@iaexpo2026.com">comercial@iaexpo2026.com</a></div>
+          <div style="margin:6px 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 2v.2l8 5.3 8-5.3V8H4Zm16 10V10.6l-7.4 4.9a1 1 0 0 1-1.2 0L4 10.6V18h16Z" fill="currentColor"/></svg> <a href="mailto:sponsor@iaexpo2026.com">sponsor@iaexpo2026.com</a></div>
+        </div>
+        <div style="font-weight:900;margin:14px 0 6px">Social</div>
+        <div class="social">
+          <a href="#" data-social="facebook" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v8h3v-8h3l1-3h-4v-3c0-.6.4-1 1-1Z" fill="currentColor"/></svg> <span>stareventagency</span></a>
+          <a href="#" data-social="tiktok" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 3c.6 2.7 2.3 4.4 5 5v4c-2 0-3.8-.6-5-1.6V16c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.3 0 .7 0 1 .1v4.3c-.3-.2-.6-.4-1-.4-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2V3h4Z" fill="currentColor"/></svg> <span>stareventdz</span></a>
+          <a href="#" data-social="instagram" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5Zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5ZM18 6.7a1.1 1.1 0 1 1-1.1-1.1A1.1 1.1 0 0 1 18 6.7Z" fill="currentColor"/></svg> <span>stareventagency</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="small" style="margin-top:14px">© Star Event Agency. All rights reserved.</div>
+  </div>
+</footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script defer src="assets/js/form.js"></script>
+</body>
+</html>

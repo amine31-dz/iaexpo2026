@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>index.html</loc></url>
+  <url><loc>index-en.html</loc></url>
+  <url><loc>index-ar.html</loc></url>
+  <url><loc>about.html</loc></url>
+  <url><loc>about-en.html</loc></url>
+  <url><loc>about-ar.html</loc></url>
+  <url><loc>services.html</loc></url>
+  <url><loc>services-en.html</loc></url>
+  <url><loc>services-ar.html</loc></url>
+  <url><loc>expo.html</loc></url>
+  <url><loc>expo-en.html</loc></url>
+  <url><loc>expo-ar.html</loc></url>
+  <url><loc>gallery.html</loc></url>
+  <url><loc>gallery-en.html</loc></url>
+  <url><loc>gallery-ar.html</loc></url>
+  <url><loc>reserve.html</loc></url>
+  <url><loc>reserve-en.html</loc></url>
+  <url><loc>reserve-ar.html</loc></url>
+  <url><loc>contact.html</loc></url>
+  <url><loc>contact-en.html</loc></url>
+  <url><loc>contact-ar.html</loc></url>
+  <url><loc>thank-you.html</loc></url>
+  <url><loc>thank-you-en.html</loc></url>
+  <url><loc>thank-you-ar.html</loc></url>
+</urlset>
