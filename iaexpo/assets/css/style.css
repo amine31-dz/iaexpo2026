@@ -9,9 +9,8 @@ html,body{height:100%}
 body{
   margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
   background:
-    radial-gradient(1200px 800px at 12% 10%, rgba(109,91,255,.22), transparent 55%),
-    radial-gradient(1000px 650px at 85% 12%, rgba(34,211,238,.18), transparent 55%),
-    radial-gradient(1100px 700px at 55% 95%, rgba(168,85,247,.14), transparent 55%),
+    linear-gradient(rgba(7,10,18,.72), rgba(7,10,18,.72)),
+    url("../img/Bg-holo.jpg") center/cover no-repeat,
     var(--bg);
   color:var(--text); line-height:1.55;
 }
