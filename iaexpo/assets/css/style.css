@@ -26,10 +26,9 @@ header{
 }
 .navbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0}
 .brand{display:flex;align-items:center;gap:12px;font-weight:800}
-.logo-img{width:34px;height:34px;object-fit:contain;display:block}
-/* Header logo larger for better visibility */
-.navbar .brand .logo-img{width:48px;height:48px}
-@media(max-width:520px){.navbar .brand .logo-img{width:36px;height:36px}}
+.logo-img{width:40px;height:40px;object-fit:contain;display:block}
+/* Slightly smaller on small screens */
+@media(max-width:520px){.logo-img{width:36px;height:36px}}
 .logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--b1),var(--b2) 55%,var(--b3));box-shadow:0 4px 12px rgba(109,91,255,.25);display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:18px;letter-spacing:-.5px}
 .navlinks{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;align-items:center}
 .navlinks a{padding:8px 10px;border-radius:12px;color:var(--muted);border:1px solid transparent}
