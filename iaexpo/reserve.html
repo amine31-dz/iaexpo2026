@@ -38,165 +38,281 @@
   <main class="container">
     
 <section class="hero">
-  <div class="kicker"><span class="dot"></span> IA Expo 2026</div>
-  <h1>Réservez votre stand</h1>
-  <p class="lead">Bon de commande exposant — calcul automatique HT / TVA 19% / TTC + devis PDF.</p>
-</section>
+    <div class="kicker"><span class="dot"></span> IA Expo 2026</div>
+    <h1>Réservez votre stand</h1>
+    <p class="lead">
+      Remplissez le bon de commande exposant. Le total est calculé automatiquement (HT / TVA / TTC).
+    </p>
+  </section>
 
-<section class="section">
-  <div class="notice"><b>Netlify Forms:</b> Envoi direct depuis le site + PDF (optionnel) côté navigateur.</div>
-</section>
-
-<section class="section">
-  <div class="card"><div class="inner">
-    <div class="stepper"><div class="step"><div class="n">1</div><div>Exposant</div></div><div class="step"><div class="n">2</div><div>Stand</div></div><div class="step"><div class="n">3</div><div>Type</div></div><div class="step"><div class="n">4</div><div>Options</div></div><div class="step"><div class="n">5</div><div>Accueil</div></div><div class="step"><div class="n">6</div><div>Récap</div></div><div class="step"><div class="n">7</div><div>Validation</div></div></div>
-
-    <div style="margin-top:14px">
-      <div data-step="1">
-        <h2>Exposant</h2>
-        <div class="form">
-          <div class="row">
-            <div class="field span-6"><label for="company">Raison sociale *</label><input id="company" type="text"/></div>
-            <div class="field span-6"><label for="contactPerson">Personne à contacter</label><input id="contactPerson" type="text"/></div>
-            <div class="field span-8"><label for="address">Adresse</label><input id="address" type="text"/></div>
-            <div class="field span-4"><label for="phone">Téléphone *</label><input id="phone" type="tel" placeholder="+213 ..."/></div>
-            <div class="field span-6"><label for="email">Email *</label><input id="email" type="email" placeholder="name@company.com"/></div>
-          </div>
+  <!-- BON DE COMMANDE -->
+  <section class="card" id="orderCard">
+    <div style="display:flex; gap:14px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;">
+      <div style="min-width:240px;">
+        <div style="font-weight:900; font-size:18px;">Star Event Agency</div>
+        <div class="small" style="opacity:.9; line-height:1.5;">
+          Adresse : Oran, Algérie<br>
+          Téléphone : +213 771 724 051<br>
+          Email : <a href="mailto:contact@iaexpo2026.com">contact@iaexpo2026.com</a> /
+          <a href="mailto:stareventdz@gmail.com">stareventdz@gmail.com</a><br>
+          Site web : <a href="https://iaexpo2026.com" target="_blank" rel="noopener">iaexpo2026.com</a>
         </div>
       </div>
 
-      <div data-step="2" class="hidden">
-        <h2>Stand</h2>
-        <div class="grid">
-          <div class="col-6"><div class="card"><div class="inner">
-            <div class="kicker"><span class="dot"></span> Stand standard</div>
-            <p class="small">14 500 DA / m² (HT)</p>
-            <div class="field">
-              <label for="standardSurface">Surface standard</label>
-              <select id="standardSurface"><option value="0">—</option><option value="9">9 m²</option><option value="12">12 m²</option><option value="16">16 m²</option><option value="24">24 m²</option><option value="36">36 m²</option><option value="48">48 m²</option></select>
-            </div>
-          </div></div></div>
-
-          <div class="col-6"><div class="card"><div class="inner">
-            <div class="kicker"><span class="dot"></span> Stand personnalisé (50–800 m²)</div>
-            <p class="small">12 500 DA / m² (HT)</p>
-            <div class="field">
-              <label for="customSurface">Surface personnalisée (m²)</label>
-              <input id="customSurface" type="number" min="50" max="800" step="1" placeholder="50–800"/>
-            </div>
-          </div></div></div>
+      <div style="text-align:right; min-width:220px;">
+        <div style="font-weight:900; font-size:16px;">Bon de Commande</div>
+        <div class="small" style="opacity:.9;">
+          N° <span id="orderNo">IAEX001</span><br>
+          Date : <span id="orderDate"></span>
         </div>
-
-        <div class="badges" style="margin-top:12px">
-          <span class="badge">Mode:</span>
-          <label class="badge"><input type="radio" name="standMode" value="standard" checked/> Stand standard</label>
-          <label class="badge"><input type="radio" name="standMode" value="custom"/> Stand personnalisé (50–800 m²)</label>
-        </div>
-      </div>
-
-      <div data-step="3" class="hidden">
-        <h2>Type de stand</h2>
-        <div class="badges">
-          <label class="badge"><input type="radio" name="standType" value="Standard" checked/> Standard</label>
-          <label class="badge"><input type="radio" name="standType" value="Corner (Angle)"/> Corner (Angle)</label>
-          <label class="badge"><input type="radio" name="standType" value="Îlot"/> Îlot</label>
-        </div>
-      </div>
-
-      <div data-step="4" class="hidden">
-        <h2>Options</h2>
-        <table class="table">
-          <thead><tr><th>Options</th><th class="right">Qté</th></tr></thead>
-          <tbody>
-            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_vip"/><label for="opt_vip">Salon VIP</label><span class="badge mono">45 000 DA (HT)</span></div></td><td class="right"><input id="qty_vip" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
-            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_storage"/><label for="opt_storage">Arrière-boutique</label><span class="badge mono">55 000 DA (HT)</span></div></td><td class="right"><input id="qty_storage" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
-            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_tv"/><label for="opt_tv">TV écran 55 cm sur pied</label><span class="badge mono">14 500 DA (HT)</span></div></td><td class="right"><input id="qty_tv" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
-            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_led_poster"/><label for="opt_led_poster">LED Poster P3 (192×64)</label><span class="badge mono">100 000 DA (HT)</span></div></td><td class="right"><input id="qty_led_poster" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
-            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_wall_2"/><label for="opt_wall_2">Mur LED indoor 2 m²</label><span class="badge mono">350 000 DA (HT)</span></div></td><td class="right"><input id="qty_wall_2" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
-            <tr><td><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><input type="checkbox" id="opt_wall_6"/><label for="opt_wall_6">Mur LED indoor 6 m²</label><span class="badge mono">750 000 DA (HT)</span></div></td><td class="right"><input id="qty_wall_6" type="number" min="1" value="1" style="max-width:110px"/></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div data-step="5" class="hidden">
-        <h2>Hôtesses / Hôtes</h2>
-        <div class="grid">
-          <div class="col-6"><div class="card"><div class="inner">
-            <div class="kicker"><span class="dot"></span> Hôtesses / Hôtes</div>
-            <p class="small">5 500 DA / jour / personne (HT)</p>
-            <div class="row">
-              <div class="field span-6"><label for="hosts">Nombre de personnes</label><input id="hosts" type="number" min="0" step="1" value="0"/></div>
-              <div class="field span-6"><label for="hostDays">Nombre de jours (1–4)</label><input id="hostDays" type="number" min="0" max="4" step="1" value="0"/></div>
-            </div>
-          </div></div></div>
-
-          <div class="col-6"><div class="card"><div class="inner">
-            <h2 style="margin-top:0">Règle de calcul</h2>
-            <p class="small mono">Total accueil HT = nb personnes × nb jours × 5 500</p>
-          </div></div></div>
-        </div>
-      </div>
-
-      <div data-step="6" class="hidden">
-        <h2>Récapitulatif</h2>
-        <div class="grid">
-          <div class="col-6"><div class="card"><div class="inner">
-            <div class="kicker"><span class="dot"></span> Exposant</div>
-            <div class="small" style="margin-top:10px">
-              <div><b id="sum_company"></b></div>
-              <div id="sum_contact"></div>
-              <div id="sum_phone"></div>
-              <div id="sum_email"></div>
-              <div id="sum_address"></div>
-            </div>
-            <hr class="sep"/>
-            <div class="kicker"><span class="dot"></span> Stand</div>
-            <div class="badges">
-              <span class="badge" id="sum_surface">—</span>
-              <span class="badge" id="sum_price_m2">—</span>
-              <span class="badge" id="sum_stand_type">—</span>
-            </div>
-            <div class="small" style="margin-top:10px">Options sélectionnées:</div>
-            <div id="opt_list" class="badges" style="margin-top:8px"></div>
-          </div></div></div>
-
-          <div class="col-6"><div class="card"><div class="inner">
-            <table class="table">
-              <tbody>
-                <tr><th>Total stand (HT)</th><td class="right mono" id="sum_stand_ht">—</td></tr>
-                <tr><th>Options (HT)</th><td class="right mono" id="sum_options_ht">—</td></tr>
-                <tr><th>Accueil (HT)</th><td class="right mono" id="sum_hosts_ht">—</td></tr>
-                <tr><th>Total HT</th><td class="right mono" id="sum_total_ht">—</td></tr>
-                <tr><th>TVA 19%</th><td class="right mono" id="sum_tva">—</td></tr>
-                <tr><th>Total TTC</th><td class="right mono" id="sum_total_ttc">—</td></tr>
-              </tbody>
-            </table>
-            <div class="cta" style="margin-top:12px">
-              <button class="btn" type="button" id="copyBtn">Copier le récap</button>
-              <button class="btn" type="button" id="pdfBtn">Générer devis PDF</button>
-            </div>
-          </div></div></div>
-        </div>
-      </div>
-
-      <div data-step="7" class="hidden">
-        <h2>Validation</h2>
-        <div class="notice"><b>Emails:</b> contact@iaexpo2026.com · comercial@iaexpo2026.com · sponsor@iaexpo2026.com</div>
-        <div class="field" style="margin-top:12px">
-          <label style="display:flex;gap:10px;align-items:center"><input id="agree" type="checkbox"/><span>J’accepte les conditions et confirme ma demande.</span></label>
-        </div>
-      </div>
-
-      <hr class="sep"/>
-      <div class="cta" style="justify-content:space-between">
-        <button class="btn" type="button" id="prevBtn">Précédent</button>
-        <button class="btn primary" type="button" id="nextBtn">Suivant <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 5l7 7-7 7v-5H4v-4h9V5Z" fill="currentColor"/></svg></button>
-        <button class="btn primary hidden" type="button" id="finishBtn">Envoyer <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 5l7 7-7 7v-5H4v-4h9V5Z" fill="currentColor"/></svg></button>
       </div>
     </div>
-  </div></div>
-</section>
 
+    <hr style="margin:16px 0; opacity:.2;">
+
+    <!-- Infos Exposant -->
+    <div class="grid" style="grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px;">
+      <label class="field">
+        <span>Entreprise / Raison sociale</span>
+        <input id="company" type="text" placeholder="Nom de l’entreprise" required>
+      </label>
+
+      <label class="field">
+        <span>Personne à contacter</span>
+        <input id="contactPerson" type="text" placeholder="Nom & prénom" required>
+      </label>
+
+      <label class="field">
+        <span>Email</span>
+        <input id="email" type="email" placeholder="email@entreprise.com" required>
+      </label>
+
+      <label class="field">
+        <span>Téléphone</span>
+        <input id="phone" type="tel" placeholder="+213..." required>
+      </label>
+
+      <label class="field" style="grid-column:1 / -1;">
+        <span>Adresse</span>
+        <input id="address" type="text" placeholder="Adresse complète" required>
+      </label>
+    </div>
+
+    <hr style="margin:16px 0; opacity:.2;">
+
+    <!-- Choix Stand -->
+    <h2 style="margin:0 0 10px;">Choix du stand</h2>
+
+    <div class="grid" style="grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px;">
+      <label class="field">
+        <span>Mode</span>
+        <select id="standMode" required>
+          <option value="standard">Stand standard</option>
+          <option value="custom">Stand sur mesure</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Surface (m²)</span>
+        <input id="surface" type="number" min="1" step="1" value="9" required>
+      </label>
+    </div>
+
+    <div class="small" style="margin-top:8px; opacity:.85;">
+      Tarifs : <b>Stand standard</b> 14 500 DZD / m² (HT) — <b>Stand sur mesure</b> 12 500 DZD / m² (HT)
+    </div>
+
+    <hr style="margin:16px 0; opacity:.2;">
+
+    <!-- Options -->
+    <h2 style="margin:0 0 10px;">Options</h2>
+
+    <div class="grid" style="grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px;">
+      <label class="checkbox">
+        <input type="checkbox" class="opt" value="Electricité (prise + éclairage)" data-price="15000">
+        <span>Électricité (prise + éclairage)</span>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" class="opt" value="Wifi exposant" data-price="8000">
+        <span>Wifi exposant</span>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" class="opt" value="Table + 2 chaises" data-price="6000">
+        <span>Table + 2 chaises</span>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" class="opt" value="Signalétique stand" data-price="7000">
+        <span>Signalétique stand</span>
+      </label>
+    </div>
+
+    <hr style="margin:16px 0; opacity:.2;">
+
+    <!-- Récap / Totaux -->
+    <h2 style="margin:0 0 10px;">Récapitulatif</h2>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr; gap:12px;">
+      <div class="card" style="padding:12px;">
+        <div class="small" style="opacity:.85;">Détails</div>
+        <div id="summary" style="margin-top:8px; line-height:1.5;"></div>
+      </div>
+
+      <div class="card" style="padding:12px;">
+        <div style="display:flex; justify-content:space-between; gap:10px;">
+          <span>Total HT</span>
+          <b id="totalHT">0</b>
+        </div>
+        <div style="display:flex; justify-content:space-between; gap:10px; margin-top:8px;">
+          <span>TVA (19%)</span>
+          <b id="tva">0</b>
+        </div>
+        <div style="display:flex; justify-content:space-between; gap:10px; margin-top:8px; font-size:18px;">
+          <span>Total TTC</span>
+          <b id="totalTTC">0</b>
+        </div>
+
+        <div class="small" style="margin-top:10px; opacity:.85;">
+          Acompte 70% (3 mois avant) : <b id="pay70">0</b><br>
+          Solde 30% (1 mois avant) : <b id="pay30">0</b>
+        </div>
+      </div>
+    </div>
+
+    <hr style="margin:16px 0; opacity:.2;">
+
+    <div class="small" style="opacity:.9; line-height:1.6;">
+      <b>Conditions de règlement :</b><br>
+      Le règlement du bon de commande se fait <b>3 mois avant</b> la date du salon international de l’IA Expo 2026
+      du <b>12 au 15 octobre</b> (70%) et <b>un mois avant octobre</b> (30%).
+    </div>
+
+    <div class="cta" style="justify-content:flex-end; margin-top:14px;">
+      <button class="btn" type="button" id="calcBtn">Recalculer</button>
+      <button class="btn primary" type="button" id="fillHiddenBtn">Valider & Préparer l’envoi</button>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const fmt = (n)=> (Number(n)||0).toLocaleString('fr-FR') + ' DZD';
+      const TVA_RATE = 0.19;
+
+      const pricePerM2 = {
+        standard: 14500,
+        custom: 12500
+      };
+
+      const el = (id)=>document.getElementById(id);
+
+      // date auto
+      const d = new Date();
+      el('orderDate').textContent = d.toLocaleDateString('fr-FR');
+
+      function calc(){
+        const mode = el('standMode').value;
+        const surface = Math.max(1, parseInt(el('surface').value || '1', 10));
+        el('surface').value = surface;
+
+        const baseHT = surface * pricePerM2[mode];
+
+        let opts = [];
+        let optsHT = 0;
+        document.querySelectorAll('.opt').forEach(ch=>{
+          if(ch.checked){
+            const p = Number(ch.dataset.price||0);
+            optsHT += p;
+            opts.push({ label: ch.value, price: p });
+          }
+        });
+
+        const totalHT = baseHT + optsHT;
+        const tva = totalHT * TVA_RATE;
+        const totalTTC = totalHT + tva;
+
+        const pay70 = totalTTC * 0.70;
+        const pay30 = totalTTC * 0.30;
+
+        el('totalHT').textContent = fmt(totalHT);
+        el('tva').textContent = fmt(tva);
+        el('totalTTC').textContent = fmt(totalTTC);
+        el('pay70').textContent = fmt(pay70);
+        el('pay30').textContent = fmt(pay30);
+
+        const modeLabel = mode === 'standard' ? 'Stand standard' : 'Stand sur mesure';
+        let s = `<b>${modeLabel}</b> — ${surface} m² × ${pricePerM2[mode].toLocaleString('fr-FR')} DZD = <b>${fmt(baseHT)}</b><br>`;
+        if(opts.length){
+          s += `<div style="margin-top:8px;"><b>Options :</b><br>`;
+          opts.forEach(o=>{
+            s += `• ${o.label} : ${fmt(o.price)}<br>`;
+          });
+          s += `</div>`;
+        } else {
+          s += `<div style="margin-top:8px; opacity:.85;">Aucune option sélectionnée.</div>`;
+        }
+        el('summary').innerHTML = s;
+
+        return { mode, surface, totalHT, tva, totalTTC, opts: opts.map(o=>o.label).join(' | ') };
+      }
+
+      // recalcul auto
+      ['standMode','surface'].forEach(id=>{
+        el(id).addEventListener('change', calc);
+        el(id).addEventListener('input', calc);
+      });
+      document.querySelectorAll('.opt').forEach(ch=> ch.addEventListener('change', calc));
+      el('calcBtn').addEventListener('click', calc);
+
+      // Remplit les champs cachés Netlify (sans toucher au form hidden)
+      el('fillHiddenBtn').addEventListener('click', function(){
+        const r = calc();
+
+        // champs visibles
+        const company = el('company').value.trim();
+        const contactPerson = el('contactPerson').value.trim();
+        const email = el('email').value.trim();
+        const phone = el('phone').value.trim();
+        const address = el('address').value.trim();
+
+        if(!company || !contactPerson || !email || !phone || !address){
+          alert("Merci de compléter toutes les informations exposant.");
+          return;
+        }
+
+        // form hidden Netlify
+        const f = document.querySelector('form[name="exhibitor"]');
+        if(!f){ alert("Formulaire Netlify introuvable."); return; }
+
+        const setHidden = (name, value)=>{
+          const input = f.querySelector(`input[name="${name}"]`);
+          if(input) input.value = value;
+        };
+
+        setHidden('company', company);
+        setHidden('contactPerson', contactPerson);
+        setHidden('email', email);
+        setHidden('phone', phone);
+        setHidden('address', address);
+
+        setHidden('standMode', r.mode);
+        setHidden('standardSurface', r.mode === 'standard' ? r.surface : '');
+        setHidden('customSurface', r.mode === 'custom' ? r.surface : '');
+        setHidden('standType', (r.mode === 'standard') ? 'standard' : 'custom');
+        setHidden('options', r.opts);
+
+        setHidden('totalHT', r.totalHT.toFixed(2));
+        setHidden('tva', r.tva.toFixed(2));
+        setHidden('totalTTC', r.totalTTC.toFixed(2));
+
+        alert("C’est prêt ✅ Tu peux maintenant cliquer sur “Envoyer” (bouton du formulaire) si tu l’utilises, ou on peut relier ce bouton à l’envoi.");
+      });
+
+      // init
+      calc();
+    })();
+  </script>
 
 <form name="exhibitor" method="POST" data-netlify="true" action="thank-you.html" class="hidden">
   <input type="hidden" name="form-name" value="exhibitor"/>
