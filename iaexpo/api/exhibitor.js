@@ -41,7 +41,13 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
+// TEST RESEND KEY (temporaire)
+const key = process.env.RESEND_API_KEY;
+return res.status(200).json({
+  hasKey: !!key,
+  keyLength: key ? key.length : 0,
+  vercelEnv: process.env.VERCEL_ENV,
+});
   if (req.method === "OPTIONS") return res.status(204).end();
   if (req.method !== "POST") return res.status(405).json({ ok: false, error: "Method not allowed" });
 
