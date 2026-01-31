@@ -183,5 +183,43 @@ header, main, footer{
   position: relative;
   z-index: 1;
 }
+/* Reserve hero (FR/EN/AR) */
+.hero.reserve-hero{
+  position: relative;
+  min-height: 520px;
+  padding: 110px 0 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: url("assets/img/bg-holo.jpg") center/cover no-repeat;
+  overflow: hidden;
+}
 
+/* couche sombre pour lisibilité du texte */
+.hero.reserve-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,.65) 0%,
+    rgba(0,0,0,.35) 55%,
+    rgba(0,0,0,.15) 100%
+  );
+  z-index:0;
+}
+
+/* tout le contenu au-dessus du filtre */
+.hero.reserve-hero > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* bouton dans le hero */
+.hero.reserve-hero .cta{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
 
