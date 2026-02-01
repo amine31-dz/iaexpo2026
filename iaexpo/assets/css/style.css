@@ -222,11 +222,16 @@ header, main, footer{
   flex-wrap:wrap;
   align-items:center;
 }
-/* ===== HERO VIDEO (Reserve) ===== */
+/* Reserve hero video - fix overlay */
 .reserve-hero{
   position: relative;
   overflow: hidden;
   min-height: 70vh;
+}
+
+/* cache toute ancienne image robot dans le hero (sécurité) */
+.reserve-hero img{
+  display: none !important;
 }
 
 .hero-video{
@@ -239,11 +244,15 @@ header, main, footer{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.55) contrast(1.1);
+  display: block;
+  filter: brightness(.55) contrast(1.1);
 }
 
-/* contenu au-dessus de la vidéo */
-.reserve-hero > *:not(.hero-video){
+/* le contenu (texte/bouton) au-dessus */
+.reserve-hero .kicker,
+.reserve-hero h1,
+.reserve-hero .lead,
+.reserve-hero .cta{
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
