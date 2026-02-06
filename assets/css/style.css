@@ -374,3 +374,15 @@ footer .footer-links a:hover{color:#1fd1ff}
   .feature img{ height: 150px; }
   .g-item img{ height: 160px; }
 }
+/* ===== Logo size fix ===== */
+.logo-img{
+  width: 160px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px){
+  .logo-img{
+    width: 120px;
+  }
+}
