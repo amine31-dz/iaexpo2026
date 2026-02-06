@@ -386,3 +386,23 @@ footer .footer-links a:hover{color:#1fd1ff}
     width: 120px;
   }
 }
+/* ===== Gallery FIX ===== */
+.paper .gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.paper .gallery-grid a{
+  display: block;
+  text-decoration: none;
+}
+
+.paper .gallery-grid img{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
