@@ -339,6 +339,27 @@
 </style>
 
 <script src="assets/js/reserve.js"></script>
+  <script src="assets/js/reserve.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const map = {
+    company: "Ex: Société ABC",
+    activity: "Ex: Technologie / Industrie",
+    address: "Adresse complète",
+    country: "Ex: Algérie",
+    city: "Ex: Oran",
+    phone: "Ex: +213 ...",
+    email: "Ex: contact@domaine.com",
+    contactPerson: "Ex: Nom Prénom"
+  };
+
+  Object.entries(map).forEach(([id, ph]) => {
+    const el = document.getElementById(id);
+    if (el && !el.getAttribute("placeholder")) el.setAttribute("placeholder", ph);
+  });
+});
+</script>
 </main>
 <footer>
   <div class="container footer-grid">
