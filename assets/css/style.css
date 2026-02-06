@@ -497,3 +497,25 @@ img, video, iframe, svg {
 .navlinks, .footer-grid, .gallery-grid, .video-grid, .drawer-links {
   min-width: 0;
 }
+/* ===== FIX SCROLL HORIZONTAL ===== */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, video, iframe, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* empêche un bloc de dépasser */
+header, main, footer, section, .container {
+  max-width: 100%;
+  overflow-x: clip;
+}
