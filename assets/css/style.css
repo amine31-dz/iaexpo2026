@@ -525,7 +525,7 @@ body{
 /* ===== Background "premium" ===== */
 .hero{
   position: relative;
-  background: url("/assets/img/sections/hero.jpg") center/cover no-repeat;
+ background: url("/assets/img/sections/expo.jpg") center/cover no-repeat;
 }
 
 .hero::before{
