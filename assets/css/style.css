@@ -438,3 +438,31 @@ img, video, iframe {
 .section, .container, header, footer, main {
   max-width: 100%;
 }
+/* FIX GLOBAL anti-débordement */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Empêche les blocs de dépasser */
+body {
+  overflow-x: hidden;
+}
+
+/* Le cas le plus fréquent : un élément en 100vw */
+[class*="container"],
+header, main, footer, section, .paper {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Empêche les grilles/flex de pousser hors écran */
+.navbar,
+.navlinks,
+.drawer-links,
+.footer-grid,
+.gallery-grid,
+.video-grid {
+  min-width: 0;
+}
