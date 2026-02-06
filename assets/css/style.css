@@ -519,3 +519,6 @@ header, main, footer, section, .container {
   max-width: 100%;
   overflow-x: clip;
 }
+body{
+  background: url("assets/img/bg.jpg") center/cover fixed no-repeat;
+}
