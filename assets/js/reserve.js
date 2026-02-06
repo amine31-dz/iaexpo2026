@@ -181,7 +181,7 @@ form.getFields().forEach(f => console.log(f.getName()));
     form.getTextField("city").setText(val("city"));
     form.getTextField("phone").setText(val("phone"));
     form.getTextField("email").setText(val("email"));
-    form.getTextField("contact_person").setText(val("contact_person"));
+    form.getTextField("contact").setText(val("contact"));
 
     // ---- Stand / surfaces (PDF) ----
     form.getTextField("surface_type").setText(
