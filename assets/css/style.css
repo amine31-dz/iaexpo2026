@@ -522,27 +522,4 @@ header, main, footer, section, .container {
 body{
   background: url("assets/img/bg.jpg") center/cover fixed no-repeat;
 }
-/* Inputs plus visibles même sans placeholder */
-.field span{
-  display:block;
-  margin-bottom:8px;
-  font-weight:700;
-  opacity:.95;
-}
 
-.field input, .field select, .field textarea{
-  background: rgba(10, 18, 30, 0.55);
-  border: 1px solid rgba(255,255,255,0.16);
-  color: #fff;
-}
-
-.field input:focus, .field select:focus, .field textarea:focus{
-  outline: none;
-  border-color: rgba(255,255,255,0.35);
-  box-shadow: 0 0 0 3px rgba(120,180,255,0.15);
-}
-
-/* petite aide visuelle si champ vide */
-.field input:placeholder-shown{
-  opacity: .85;
-}
