@@ -522,3 +522,38 @@ header, main, footer, section, .container {
 body{
   background: #070d1a; /* fallback */
 }
+/* ===== Background "premium" ===== */
+.hero{
+  position: relative;
+  background: url("/assets/img/sections/hero.jpg") center/cover no-repeat;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(7,13,26,.85), rgba(7,13,26,.65));
+}
+
+.hero .container{
+  position: relative;
+  z-index: 1;
+}
+
+/* Fond général des sections (si tu veux un style similaire partout) */
+.section{
+  position: relative;
+}
+
+.section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(7,13,26,.55);
+  pointer-events:none;
+}
+
+.section > .container{
+  position:relative;
+  z-index:1;
+}
