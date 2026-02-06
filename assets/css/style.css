@@ -427,3 +427,14 @@ html, body {
   width: 100%;
   overflow-x: hidden;
 }
+/* images, vidéos, iframes… ne doivent jamais dépasser */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* éviter les 100vw qui crée du débordement */
+.section, .container, header, footer, main {
+  max-width: 100%;
+}
