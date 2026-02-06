@@ -169,6 +169,8 @@
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
 
     const form = pdfDoc.getForm();
+    console.log("===== CHAMPS PDF =====");
+form.getFields().forEach(f => console.log(f.getName()));
 
     // ---- Exhibitor fields (PDF) ----
     // (These names come from your FR interactive PDF)
