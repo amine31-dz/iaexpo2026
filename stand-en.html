@@ -64,235 +64,163 @@
 </aside>
 </header>
 <main>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 
-  <section class="hero">
-    <div class="container">
-      <div class="kicker"><span class="dot"></span> Book your booth</div>
-      <h1>Exhibitor booking</h1>
-      <p class="lead">
-        Fill in your details, choose your booth and options.
-        Net, VAT and Total are calculated automatically.
-      </p>
+<section class="hero">
+  <div class="container">
+    <div class="kicker"><span class="dot"></span> Book a booth</div>
+    <h1>Exhibitor booking</h1>
+    <p class="lead">
+      Fill in your details, choose the booth and options.
+      Net/VAT/Total are calculated automatically, then you download a prefilled interactive PDF.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container notice">
+    <b>Rates (Net):</b><br>
+    • Standard booth: <b>14,500 DZD / m²</b> — Areas: <b>9 / 12 / 16 / 24 / 36 / 48 m²</b><br>
+    • Custom booth (50–800 m²): <b>12,500 DZD / m²</b> — Free area
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid">
+
+    <div class="col-12">
+      <div class="card"><div class="inner">
+        <h2>1) Exhibitor information</h2>
+
+        <div class="grid" style="gap:12px">
+          <div class="col-6"><label class="field"><span>Company / Organization</span><input id="company" type="text" required></label></div>
+          <div class="col-6"><label class="field"><span>Activity</span><input id="activity" type="text"></label></div>
+          <div class="col-6"><label class="field"><span>Address</span><input id="address" type="text"></label></div>
+          <div class="col-6"><label class="field"><span>Country</span><input id="country" type="text"></label></div>
+          <div class="col-6"><label class="field"><span>City</span><input id="city" type="text"></label></div>
+          <div class="col-6"><label class="field"><span>Phone</span><input id="phone" type="tel"></label></div>
+          <div class="col-6"><label class="field"><span>Email</span><input id="email" type="email"></label></div>
+          <div class="col-6"><label class="field"><span>Contact person</span><input id="contact_person" type="text"></label></div>
+        </div>
+      </div></div>
     </div>
-  </section>
 
-  <section class="section">
-    <div class="container notice">
-      <b>Pricing & areas (Net):</b><br>
-      • Standard booth: <b>14,500 DZD / m²</b> — Areas: <b>9 / 12 / 16 / 24 / 36 / 48 m²</b><br>
-      • Custom booth: <b>12,500 DZD / m²</b> — Free area: <b>50 to 800 m²</b>
-    </div>
-  </section>
+    <div class="col-12">
+      <div class="card"><div class="inner">
+        <h2>2) Rates & areas</h2>
 
-  <section class="section">
-    <div class="container grid">
-
-      <div class="col-12">
-        <div class="card"><div class="inner">
-          <h2>1) Exhibitor information</h2>
-
-          <div class="row">
-            <div class="field span-12">
-              <label for="company">Company / Organization</label>
-              <input id="company" type="text" placeholder="Company name" autocomplete="organization" />
-            </div>
-
-            <div class="field span-6">
-              <label for="lastName">Last name</label>
-              <input id="lastName" type="text" placeholder="Last name" autocomplete="family-name" />
-            </div>
-            <div class="field span-6">
-              <label for="firstName">First name</label>
-              <input id="firstName" type="text" placeholder="First name" autocomplete="given-name" />
-            </div>
-
-            <div class="field span-6">
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="email@example.com" autocomplete="email" />
-            </div>
-            <div class="field span-6">
-              <label for="phone">Phone</label>
-              <input id="phone" type="tel" placeholder="+213 ..." autocomplete="tel" />
-            </div>
-
-            <div class="field span-12">
-              <label for="role">Role</label>
-              <input id="role" type="text" placeholder="Role" />
-            </div>
-
-            <div class="field span-12">
-              <label for="activity">Business activity</label>
-              <input id="activity" type="text" placeholder="Sector / activity" />
-            </div>
-
-            <div class="field span-12">
-              <label for="address">Address</label>
-              <input id="address" type="text" placeholder="Full address" autocomplete="street-address" />
-            </div>
-
-            <div class="field span-6">
-              <label for="country">Country</label>
-              <input id="country" type="text" placeholder="Algeria" autocomplete="country-name" />
-            </div>
-            <div class="field span-6">
-              <label for="city">City</label>
-              <input id="city" type="text" placeholder="Oran" autocomplete="address-level2" />
-            </div>
-
-            <div class="field span-12">
-              <label for="contactPerson">Contact person</label>
-              <input id="contactPerson" type="text" placeholder="Full name" />
-            </div>
-          </div>
-        </div></div>
-      </div>
-
-      <div class="col-12">
-        <div class="card"><div class="inner">
-          <h2>2) Booth</h2>
-
-          <div class="row">
-            <div class="field span-6">
-              <label for="standType">Type</label>
-              <select id="standType">
-                <option value="standard">Standard booth (14,500 DZD/m²)</option>
-                <option value="custom">Custom booth (12,500 DZD/m²)</option>
+        <div class="grid" style="gap:12px">
+          <div class="col-6">
+            <label class="field">
+              <span>Type</span>
+              <select id="stand_type" required>
+                <option value="standard">Standard booth</option>
+                <option value="custom">Custom booth (50–800 m²)</option>
               </select>
-            </div>
+            </label>
+          </div>
 
-            <div class="field span-6">
-              <label for="standPos">Layout</label>
-              <select id="standPos">
+          <div class="col-6">
+            <label class="field">
+              <span>Layout</span>
+              <select id="stand_position">
                 <option value="standard">Standard</option>
-                <option value="corner">Corner</option>
-                <option value="island">Island</option>
+                <option value="angle">Corner</option>
+                <option value="ilot">Island</option>
               </select>
-            </div>
+            </label>
+          </div>
 
-            <div class="field span-6" id="areaStandardWrap">
-              <label for="areaStandard">Area (m²) — Standard</label>
-              <select id="areaStandard">
-                <option value="9">9 m²</option>
-                <option value="12">12 m²</option>
-                <option value="16">16 m²</option>
-                <option value="24">24 m²</option>
-                <option value="36">36 m²</option>
-                <option value="48">48 m²</option>
+          <div class="col-6" id="areaPresetWrap">
+            <label class="field">
+              <span>Area (m²) — preset</span>
+              <select id="stand_area_preset" required>
+                <option value="">— Select —</option>
               </select>
-            </div>
-
-            <div class="field span-6 hidden" id="areaCustomWrap">
-              <label for="areaCustom">Area (m²) — Custom (50 to 800)</label>
-              <input id="areaCustom" type="number" min="50" max="800" step="1" value="50" />
-              <div class="small">Min 50 m² — Max 800 m²</div>
-            </div>
-
-            <div class="field span-12">
-              <div class="notice">
-                <b>Applied type:</b> <span id="appliedType">Standard booth</span> —
-                <b>Rate:</b> <span id="appliedRate">14,500 DZD/m²</span>
-              </div>
-            </div>
-          </div>
-
-        </div></div>
-      </div>
-
-      <div class="col-12">
-        <div class="card"><div class="inner">
-          <h2>3) Options & services (Net)</h2>
-
-          <div class="list" style="gap:10px">
-            <label class="li" style="cursor:pointer">
-              <input type="checkbox" class="opt" data-label="VIP lounge" data-price="45000" />
-              <span><b>VIP lounge</b> <span class="small">(45,000 DZD)</span></span>
-            </label>
-
-            <label class="li" style="cursor:pointer">
-              <input type="checkbox" class="opt" data-label="Back office" data-price="55000" />
-              <span><b>Back office</b> <span class="small">(55,000 DZD)</span></span>
-            </label>
-
-            <label class="li" style="cursor:pointer">
-              <input type="checkbox" class="opt" data-label="LED poster" data-price="100000" />
-              <span><b>LED poster</b> <span class="small">(100,000 DZD)</span></span>
-            </label>
-
-            <label class="li" style="cursor:pointer">
-              <input type="checkbox" class="opt" data-label="LED wall 2 m²" data-price="350000" />
-              <span><b>LED wall 2 m²</b> <span class="small">(350,000 DZD)</span></span>
-            </label>
-
-            <label class="li" style="cursor:pointer">
-              <input type="checkbox" class="opt" data-label="LED wall 6 m²" data-price="750000" />
-              <span><b>LED wall 6 m²</b> <span class="small">(750,000 DZD)</span></span>
             </label>
           </div>
 
-          <hr class="sep"/>
-
-          <h3 style="margin:0 0 10px">Hostesses (5,500 DZD / day / person)</h3>
-          <div class="row">
-            <div class="field span-6">
-              <label for="hostQty">Number of people</label>
-              <input id="hostQty" type="number" min="0" step="1" value="0" />
-            </div>
-            <div class="field span-6">
-              <label for="hostDays">Number of days</label>
-              <input id="hostDays" type="number" min="0" step="1" value="0" />
-            </div>
-            <div class="field span-12">
-              <div class="notice">
-                Hostesses total (Net) = people × days × 5,500 = <b id="hostTotal">0 DZD</b>
-              </div>
-            </div>
+          <div class="col-6 hidden" id="areaCustomWrap">
+            <label class="field">
+              <span>Area (m²) — custom (50 to 800)</span>
+              <input id="stand_area_custom" type="number" min="50" max="800" step="1" placeholder="e.g. 60">
+            </label>
           </div>
+        </div>
 
-        </div></div>
-      </div>
-
-      <div class="col-12">
-        <div class="card"><div class="inner">
-          <h2>4) Summary & totals</h2>
-
-          <div class="grid" style="gap:12px">
-            <div class="col-6">
-              <div class="summary">
-                <div class="li"><span>Type</span><b id="sum_type">—</b></div>
-                <div class="li"><span>Layout</span><b id="sum_pos">—</b></div>
-                <div class="li"><span>Area</span><b id="sum_area">—</b></div>
-                <div class="li"><span>Applied rate</span><b id="sum_rate">—</b></div>
-                <div class="li"><span>Booth net</span><b id="sum_stand_ht">—</b></div>
-              </div>
-            </div>
-
-            <div class="col-6">
-              <div class="summary">
-                <div class="li"><span>Options net</span><b id="sum_opts_ht">—</b></div>
-                <div class="li"><span>Total net</span><b id="sum_ht">—</b></div>
-                <div class="li"><span>VAT (19%)</span><b id="sum_tva">—</b></div>
-                <div class="li"><span>Total</span><b id="sum_ttc">—</b></div>
-              </div>
-
-              <div class="notice" style="margin-top:12px">
-                After downloading, stamp & sign and send to <b>contact@iaexpo2026.com</b>.
-              </div>
-
-              <div class="cta" style="margin-top:12px">
-                <a class="btn primary" download href="assets/pdf/IAEXPO2026_Reservation_Stand_EN_Interactive.pdf">
-                  Download order form (interactive PDF)
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div></div>
-      </div>
-
+        <div class="notice" style="margin-top:10px">
+          Tip: choose <b>Type</b> first, then <b>Area</b>.
+        </div>
+      </div></div>
     </div>
-  </section>
 
-  <script src="assets/js/reserve.js"></script>
+    <div class="col-12">
+      <div class="card"><div class="inner">
+        <h2>3) Options & services</h2>
+        <div class="notice">Tick what you need</div>
+
+        <div class="grid" style="gap:10px;margin-top:10px">
+          <div class="col-12"><label class="field" style="display:flex;align-items:center;gap:10px"><input id="opt_vip" type="checkbox"><span>VIP lounge (45,000 DZD)</span></label></div>
+          <div class="col-12"><label class="field" style="display:flex;align-items:center;gap:10px"><input id="opt_backoffice" type="checkbox"><span>Back office (55,000 DZD)</span></label></div>
+          <div class="col-12"><label class="field" style="display:flex;align-items:center;gap:10px"><input id="opt_posterled" type="checkbox"><span>LED poster (100,000 DZD)</span></label></div>
+          <div class="col-12"><label class="field" style="display:flex;align-items:center;gap:10px"><input id="opt_wall2" type="checkbox"><span>LED wall 2 m² (350,000 DZD)</span></label></div>
+          <div class="col-12"><label class="field" style="display:flex;align-items:center;gap:10px"><input id="opt_wall6" type="checkbox"><span>LED wall 6 m² (750,000 DZD)</span></label></div>
+          <div class="col-12"><label class="field" style="display:flex;align-items:center;gap:10px"><input id="opt_hostess" type="checkbox"><span>Hostesses (5,500 DZD / day / person)</span></label></div>
+
+          <div class="col-12 hidden" id="hostessWrap">
+            <div class="grid" style="gap:12px">
+              <div class="col-6"><label class="field"><span>Persons</span><input id="hostess_persons" type="number" min="0" step="1"></label></div>
+              <div class="col-6"><label class="field"><span>Days</span><input id="hostess_days" type="number" min="0" step="1"></label></div>
+            </div>
+            <div class="notice" style="margin-top:10px">
+              Hostesses: persons × days × 5,500 = total (Net)
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="col-12">
+      <div class="card"><div class="inner">
+        <h2>4) Summary & totals</h2>
+
+        <div class="summary">
+          <div class="li"><span>Applied type</span><b id="sum_type">—</b></div>
+          <div class="li"><span>Layout</span><b id="sum_position">—</b></div>
+          <div class="li"><span>Selected area</span><b id="sum_area">—</b></div>
+          <div class="li"><span>Applied rate</span><b id="sum_price">—</b></div>
+          <div class="li"><span>Booth net total</span><b id="sum_stand_ht">—</b></div>
+
+          <div class="li"><span>Options</span><b id="sum_opts">—</b></div>
+          <div class="li"><span>Options net</span><b id="sum_opts_ht">—</b></div>
+
+          <div class="li"><span>Total net</span><b id="sum_ht">—</b></div>
+          <div class="li"><span>VAT (19%)</span><b id="sum_tva">—</b></div>
+          <div class="li"><span>Total</span><b id="sum_ttc">—</b></div>
+        </div>
+
+        <div class="notice" style="margin-top:12px">
+          Payment: <b>70%</b> (3 months before) + <b>30%</b> (1 month before).<br>
+          After downloading, stamp & sign then email <b>contact@iaexpo2026.com</b>.
+        </div>
+
+        <div class="cta" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn primary" id="downloadPrefilled" type="button">Download prefilled PDF</button>
+          <a class="btn" download href="assets/pdf/IAEXPO2026_Reservation_Stand_EN_Interactive.pdf">Download empty interactive PDF</a>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  html, body { overflow-x: hidden; }
+  .container, .grid, .card { max-width: 100%; }
+  input, select, textarea { pointer-events: auto !important; opacity: 1 !important; }
+</style>
+
+<script src="assets/js/reserve.js"></script>
 </main>
 <footer>
 <div class="container footer-grid">
