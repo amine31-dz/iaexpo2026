@@ -423,3 +423,7 @@ footer .footer-links a:hover{color:#1fd1ff}
   border-radius:18px;
   display:block;
 }
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
