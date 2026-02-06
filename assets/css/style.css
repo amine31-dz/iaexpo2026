@@ -522,4 +522,6 @@ header, main, footer, section, .container {
 body{
   background: url("assets/img/bg.jpg") center/cover fixed no-repeat;
 }
-
+body{
+  background: url("../img/bg.jpg") center/cover fixed no-repeat;
+}
