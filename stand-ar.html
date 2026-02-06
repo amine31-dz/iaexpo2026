@@ -64,41 +64,235 @@
 </aside>
 </header>
 <main>
-<section class="hero"><div class="container">
-<div class="kicker"><span class="dot"></span> احجز جناحك</div>
-<h1>حجز العارض</h1>
-<p class="lead">أدخل معلوماتك، اختر نوع الجناح والخيارات، ثم يتم حساب المجموع تلقائياً.</p>
-</div></section>
-<section class="section"><div class="container grid">Standard: 14 500 DA / m² • Personnalisé: 12 500 DA / m²</div></section>
-<section class="section"><div class="container grid">
-<div class="col-12"><div class="card"><div class="inner">
-<h2>4) الملخص والإجمالي</h2>
-<div class="grid" style="gap:12px">
-<div class="col-6">
-<div class="summary">
-<div class="li"><span>الجناح</span><b id="sum_type">—</b></div>
-<div class="li"><span>نوع/موقع الجناح</span><b id="sum_shape">—</b></div>
-<div class="li"><span>المساحة</span><b id="sum_area">—</b></div>
-<div class="li"><span>الجناح</span><b id="sum_stand">—</b></div>
-<div class="li"><span>الخيارات</span><b id="sum_opts">—</b></div>
-</div>
-</div>
-<div class="col-6">
-<div class="summary">
-<div class="li"><span>المجموع بدون TVA</span><b id="sum_ht">—</b></div>
-<div class="li"><span>TVA (19%)</span><b id="sum_tva">—</b></div>
-<div class="li"><span>المجموع النهائي</span><b id="sum_ttc">—</b></div>
-</div>
-<div class="notice" style="margin-top:12px">بعد التحميل: ضع الختم والتوقيع ثم أرسل إلى contact@iaexpo2026.com.</div>
-<div class="cta" style="margin-top:12px">
-<button class="btn primary" id="downloadPrefilled" type="button">تحميل PDF مُعبّأ</button>
-<a class="btn" download="" href="assets/pdf/IAEXPO2026_Reservation_Stand_AR_Interactive.pdf">تحميل نموذج الطلب (PDF تفاعلي)</a>
-</div>
-</div>
-</div>
-</div></div></div>
-</div></section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script><script src="assets/js/reserve.js"></script>
+
+  <section class="hero">
+    <div class="container">
+      <div class="kicker"><span class="dot"></span> احجز جناحك</div>
+      <h1>حجز العارض</h1>
+      <p class="lead">
+        أدخل معلوماتك واختر نوع الجناح والخيارات.
+        يتم حساب الإجمالي تلقائياً (بدون TVA / TVA / TTC).
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container notice">
+      <b>الأسعار والمساحات (HT):</b><br>
+      • الجناح القياسي: <b>14,500 دج / م²</b> — المساحات: <b>9 / 12 / 16 / 24 / 36 / 48 م²</b><br>
+      • جناح حسب الطلب: <b>12,500 دج / م²</b> — مساحة حرة: <b>50 إلى 800 م²</b>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid">
+
+      <div class="col-12">
+        <div class="card"><div class="inner">
+          <h2>1) معلومات العارض</h2>
+
+          <div class="row">
+            <div class="field span-12">
+              <label for="company">الشركة / المؤسسة</label>
+              <input id="company" type="text" placeholder="الاسم التجاري" autocomplete="organization" />
+            </div>
+
+            <div class="field span-6">
+              <label for="lastName">اللقب</label>
+              <input id="lastName" type="text" placeholder="اللقب" autocomplete="family-name" />
+            </div>
+            <div class="field span-6">
+              <label for="firstName">الاسم</label>
+              <input id="firstName" type="text" placeholder="الاسم" autocomplete="given-name" />
+            </div>
+
+            <div class="field span-6">
+              <label for="email">البريد الإلكتروني</label>
+              <input id="email" type="email" placeholder="email@example.com" autocomplete="email" />
+            </div>
+            <div class="field span-6">
+              <label for="phone">الهاتف</label>
+              <input id="phone" type="tel" placeholder="+213 ..." autocomplete="tel" />
+            </div>
+
+            <div class="field span-12">
+              <label for="role">الوظيفة</label>
+              <input id="role" type="text" placeholder="الوظيفة" />
+            </div>
+
+            <div class="field span-12">
+              <label for="activity">النشاط</label>
+              <input id="activity" type="text" placeholder="المجال / النشاط" />
+            </div>
+
+            <div class="field span-12">
+              <label for="address">العنوان</label>
+              <input id="address" type="text" placeholder="العنوان الكامل" autocomplete="street-address" />
+            </div>
+
+            <div class="field span-6">
+              <label for="country">البلد</label>
+              <input id="country" type="text" placeholder="الجزائر" autocomplete="country-name" />
+            </div>
+            <div class="field span-6">
+              <label for="city">المدينة</label>
+              <input id="city" type="text" placeholder="وهران" autocomplete="address-level2" />
+            </div>
+
+            <div class="field span-12">
+              <label for="contactPerson">الشخص المسؤول</label>
+              <input id="contactPerson" type="text" placeholder="الاسم الكامل" />
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="col-12">
+        <div class="card"><div class="inner">
+          <h2>2) الجناح</h2>
+
+          <div class="row">
+            <div class="field span-6">
+              <label for="standType">النوع</label>
+              <select id="standType">
+                <option value="standard">جناح قياسي (14,500 دج/م²)</option>
+                <option value="custom">جناح حسب الطلب (12,500 دج/م²)</option>
+              </select>
+            </div>
+
+            <div class="field span-6">
+              <label for="standPos">الموقع</label>
+              <select id="standPos">
+                <option value="standard">قياسي</option>
+                <option value="corner">زاوية</option>
+                <option value="island">جزيرة</option>
+              </select>
+            </div>
+
+            <div class="field span-6" id="areaStandardWrap">
+              <label for="areaStandard">المساحة (م²) — قياسي</label>
+              <select id="areaStandard">
+                <option value="9">9 م²</option>
+                <option value="12">12 م²</option>
+                <option value="16">16 م²</option>
+                <option value="24">24 م²</option>
+                <option value="36">36 م²</option>
+                <option value="48">48 م²</option>
+              </select>
+            </div>
+
+            <div class="field span-6 hidden" id="areaCustomWrap">
+              <label for="areaCustom">المساحة (م²) — حسب الطلب (50 إلى 800)</label>
+              <input id="areaCustom" type="number" min="50" max="800" step="1" value="50" />
+              <div class="small">الحد الأدنى 50 — الحد الأقصى 800</div>
+            </div>
+
+            <div class="field span-12">
+              <div class="notice">
+                <b>النوع المطبق:</b> <span id="appliedType">جناح قياسي</span> —
+                <b>السعر:</b> <span id="appliedRate">14,500 دج/م²</span>
+              </div>
+            </div>
+          </div>
+
+        </div></div>
+      </div>
+
+      <div class="col-12">
+        <div class="card"><div class="inner">
+          <h2>3) الخيارات والخدمات (HT)</h2>
+
+          <div class="list" style="gap:10px">
+            <label class="li" style="cursor:pointer">
+              <input type="checkbox" class="opt" data-label="صالون VIP" data-price="45000" />
+              <span><b>صالون VIP</b> <span class="small">(45,000 دج)</span></span>
+            </label>
+
+            <label class="li" style="cursor:pointer">
+              <input type="checkbox" class="opt" data-label="Back office" data-price="55000" />
+              <span><b>Back office</b> <span class="small">(55,000 دج)</span></span>
+            </label>
+
+            <label class="li" style="cursor:pointer">
+              <input type="checkbox" class="opt" data-label="Poster LED" data-price="100000" />
+              <span><b>Poster LED</b> <span class="small">(100,000 دج)</span></span>
+            </label>
+
+            <label class="li" style="cursor:pointer">
+              <input type="checkbox" class="opt" data-label="Mur LED 2 م²" data-price="350000" />
+              <span><b>Mur LED 2 م²</b> <span class="small">(350,000 دج)</span></span>
+            </label>
+
+            <label class="li" style="cursor:pointer">
+              <input type="checkbox" class="opt" data-label="Mur LED 6 م²" data-price="750000" />
+              <span><b>Mur LED 6 م²</b> <span class="small">(750,000 دج)</span></span>
+            </label>
+          </div>
+
+          <hr class="sep"/>
+
+          <h3 style="margin:0 0 10px">المضيفات (5,500 دج / يوم / شخص)</h3>
+          <div class="row">
+            <div class="field span-6">
+              <label for="hostQty">عدد الأشخاص</label>
+              <input id="hostQty" type="number" min="0" step="1" value="0" />
+            </div>
+            <div class="field span-6">
+              <label for="hostDays">عدد الأيام</label>
+              <input id="hostDays" type="number" min="0" step="1" value="0" />
+            </div>
+            <div class="field span-12">
+              <div class="notice">
+                إجمالي المضيفات (HT) = الأشخاص × الأيام × 5,500 = <b id="hostTotal">0 دج</b>
+              </div>
+            </div>
+          </div>
+
+        </div></div>
+      </div>
+
+      <div class="col-12">
+        <div class="card"><div class="inner">
+          <h2>4) الملخص والإجمالي</h2>
+
+          <div class="grid" style="gap:12px">
+            <div class="col-6">
+              <div class="summary">
+                <div class="li"><span>النوع</span><b id="sum_type">—</b></div>
+                <div class="li"><span>الموقع</span><b id="sum_pos">—</b></div>
+                <div class="li"><span>المساحة</span><b id="sum_area">—</b></div>
+                <div class="li"><span>السعر المطبق</span><b id="sum_rate">—</b></div>
+                <div class="li"><span>إجمالي الجناح HT</span><b id="sum_stand_ht">—</b></div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="summary">
+                <div class="li"><span>الخيارات HT</span><b id="sum_opts_ht">—</b></div>
+                <div class="li"><span>الإجمالي HT</span><b id="sum_ht">—</b></div>
+                <div class="li"><span>TVA (19%)</span><b id="sum_tva">—</b></div>
+                <div class="li"><span>الإجمالي TTC</span><b id="sum_ttc">—</b></div>
+              </div>
+
+              <div class="notice" style="margin-top:12px">
+                بعد التحميل ضع الختم والتوقيع ثم أرسل إلى <b>contact@iaexpo2026.com</b>.
+              </div>
+
+              <div class="cta" style="margin-top:12px">
+                <a class="btn primary" download href="assets/pdf/IAEXPO2026_Reservation_Stand_AR_Interactive.pdf">
+                  تحميل نموذج الطلب (PDF تفاعلي)
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="assets/js/reserve.js"></script>
 </main>
 <footer>
 <div class="container footer-grid">
