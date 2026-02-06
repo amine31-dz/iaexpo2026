@@ -1,4 +1,7 @@
 // assets/js/reserve.js
+<script>
+  alert("JS chargé ✅");
+</script>
 (function () {
   const VAT = 0.19;
 
