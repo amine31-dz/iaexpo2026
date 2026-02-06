@@ -520,8 +520,5 @@ header, main, footer, section, .container {
   overflow-x: clip;
 }
 body{
-  background: url("assets/img/bg.jpg") center/cover fixed no-repeat;
-}
-body{
-  background: url("../img/bg.jpg") center/cover fixed no-repeat;
+  background: #070d1a; /* fallback */
 }
