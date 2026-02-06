@@ -78,204 +78,135 @@
 </header>
 
 <main>
-  <section class="hero">
-    <div class="container">
-      <div class="kicker"><span class="dot"></span> Réservez votre stand</div>
-      <h1>Réservation exposant</h1>
-      <p class="lead">Saisissez vos informations, choisissez votre stand et options, puis obtenez le total HT/TVA/TTC automatiquement.</p>
-    </div>
-  </section>
 
-  <!-- ✅ bloc prix propre -->
-  <section class="section">
-    <div class="container">
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="kicker"><span class="dot"></span> Réservez votre stand</div>
+    <h1>Réservation exposant</h1>
+    <p class="lead">
+      Remplissez le formulaire ci-dessous. Le total HT, TVA et TTC
+      sera calculé automatiquement selon vos choix.
+    </p>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="section">
+  <div class="container notice">
+    <b>Tarifs :</b><br>
+    • Stand standard : <b>14 500 DA / m² HT</b><br>
+    • Stand personnalisé : <b>12 500 DA / m² HT</b>
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<section class="section">
+  <div class="container grid">
+
+    <!-- 1) TYPE DE STAND -->
+    <div class="col-12">
       <div class="card">
         <div class="inner">
-          <b>Tarifs</b>
-          <div style="margin-top:8px; opacity:.9; line-height:1.6">
-            Standard : <b>14 500 DA / m²</b> • Personnalisé : <b>12 500 DA / m²</b>
-          </div>
+          <h2>1) Type de stand</h2>
+
+          <label class="field">
+            <span>Choisissez le type</span>
+            <select id="stand_type" required>
+              <option value="">— Choisir —</option>
+              <option value="standard">Stand standard</option>
+              <option value="custom">Stand personnalisé</option>
+            </select>
+          </label>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ✅ 1) Infos exposant -->
-  <section class="section">
-    <div class="container grid">
-      <div class="col-12">
-        <div class="card">
-          <div class="inner">
-            <h2>1) Informations exposant</h2>
+    <!-- 2) SUPERFICIE -->
+    <div class="col-12">
+      <div class="card">
+        <div class="inner">
+          <h2>2) Superficie (m²)</h2>
 
-            <div class="grid" style="gap:12px">
-              <div class="col-6">
-                <label class="small">Entreprise / Organisation</label>
-                <input id="company" class="input" type="text" placeholder="Nom de l’entreprise" />
-              </div>
-              <div class="col-6">
-                <label class="small">Nom & prénom</label>
-                <input id="fullname" class="input" type="text" placeholder="Votre nom complet" />
-              </div>
-
-              <div class="col-6">
-                <label class="small">Email</label>
-                <input id="email" class="input" type="email" placeholder="exemple@mail.com" />
-              </div>
-              <div class="col-6">
-                <label class="small">Téléphone</label>
-                <input id="phone" class="input" type="tel" placeholder="+213 ..." />
-              </div>
-            </div>
-
-            <div class="notice" style="margin-top:12px">
-              Ces infos serviront au PDF pré-rempli.
-            </div>
-          </div>
+          <label class="field">
+            <span>Surface demandée</span>
+            <select id="stand_area" required>
+              <!-- rempli automatiquement par JS -->
+            </select>
+          </label>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ✅ 2) Choix du stand -->
-  <section class="section">
-    <div class="container grid">
-      <div class="col-12">
-        <div class="card">
-          <div class="inner">
-            <h2>2) Choix du stand</h2>
+    <!-- 3) OPTIONS -->
+    <div class="col-12">
+      <div class="card">
+        <div class="inner">
+          <h2>3) Options</h2>
 
-            <div class="grid" style="gap:12px">
-              <div class="col-6">
-                <label class="small">Type de stand</label>
-                <!-- IDs simples : reserve.js peut lire via querySelector -->
-                <select id="stand_type" class="input">
-                  <option value="">Choisir</option>
-                  <option value="standard">Standard</option>
-                  <option value="personnalise">Personnalisé</option>
-                </select>
-              </div>
+          <label class="field">
+            <span>Électricité</span>
+            <select id="opt_power">
+              <option value="0">Aucune</option>
+              <option value="5000">1 prise (5 000 DA)</option>
+              <option value="9000">2 prises (9 000 DA)</option>
+            </select>
+          </label>
 
-              <div class="col-6">
-                <label class="small">Type / position</label>
-                <select id="stand_shape" class="input">
-                  <option value="">Choisir</option>
-                  <option value="line">Line</option>
-                  <option value="angle">Angle</option>
-                  <option value="ilot">Îlot</option>
-                </select>
-              </div>
+          <label class="field">
+            <span>Mobilier</span>
+            <select id="opt_furniture">
+              <option value="0">Aucun</option>
+              <option value="15000">Pack mobilier (15 000 DA)</option>
+            </select>
+          </label>
 
-              <div class="col-6">
-                <label class="small">Superficie (m²)</label>
-                <input id="stand_area" class="input" type="number" min="1" step="1" placeholder="Ex: 12" />
-              </div>
-
-              <div class="col-6">
-                <label class="small">Remarque (optionnel)</label>
-                <input id="note" class="input" type="text" placeholder="Ex: proche entrée, etc." />
-              </div>
-            </div>
-
-            <div class="notice" style="margin-top:12px">
-              Astuce : commence par sélectionner le type, puis la superficie.
-            </div>
-          </div>
+          <label class="field">
+            <span>Signalétique</span>
+            <select id="opt_sign">
+              <option value="0">Aucune</option>
+              <option value="8000">Nom sur fascia (8 000 DA)</option>
+            </select>
+          </label>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ✅ 3) Options -->
-  <section class="section">
-    <div class="container grid">
-      <div class="col-12">
-        <div class="card">
-          <div class="inner">
-            <h2>3) Options</h2>
+    <!-- 4) RÉCAP -->
+    <div class="col-12">
+      <div class="card">
+        <div class="inner">
+          <h2>4) Récapitulatif & Total</h2>
 
-            <div class="grid" style="gap:12px">
-              <div class="col-6">
-                <label class="small">
-                  <input id="opt_elec" type="checkbox" />
-                  Électricité
-                </label>
-              </div>
-              <div class="col-6">
-                <label class="small">
-                  <input id="opt_mob" type="checkbox" />
-                  Mobilier
-                </label>
-              </div>
-              <div class="col-6">
-                <label class="small">
-                  <input id="opt_wifi" type="checkbox" />
-                  Wi-Fi
-                </label>
-              </div>
-              <div class="col-6">
-                <label class="small">
-                  <input id="opt_signal" type="checkbox" />
-                  Signalétique
-                </label>
-              </div>
-            </div>
-
-            <div class="notice" style="margin-top:12px">
-              Les options seront ajoutées au récapitulatif.
-            </div>
+          <div class="summary">
+            <div class="li"><span>Type de stand</span><b id="sum_type">—</b></div>
+            <div class="li"><span>Superficie</span><b id="sum_area">—</b></div>
+            <div class="li"><span>Options</span><b id="sum_opts">—</b></div>
+            <div class="li"><span>Total HT</span><b id="sum_ht">—</b></div>
+            <div class="li"><span>TVA (19%)</span><b id="sum_tva">—</b></div>
+            <div class="li"><span>Total TTC</span><b id="sum_ttc">—</b></div>
           </div>
+
+          <div class="notice" style="margin-top:12px">
+            Après téléchargement, apposez cachet et signature puis envoyez à
+            <b>contact@iaexpo2026.com</b>
+          </div>
+
+          <div class="cta" style="margin-top:12px">
+            <a class="btn primary" download
+               href="assets/pdf/IAEXPO2026_Reservation_Stand_FR_Interactive.pdf">
+              Télécharger le bon de commande (PDF)
+            </a>
+          </div>
+
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ✅ 4) Ton bloc récap conservé (IDs inchangés pour reserve.js) -->
-  <section class="section">
-    <div class="container grid">
-      <div class="col-12">
-        <div class="card">
-          <div class="inner">
-            <h2>4) Récapitulatif &amp; total</h2>
+  </div>
+</section>
 
-            <div class="grid" style="gap:12px">
-              <div class="col-6">
-                <div class="summary">
-                  <div class="li"><span>Stand</span><b id="sum_type">—</b></div>
-                  <div class="li"><span>Type / position</span><b id="sum_shape">—</b></div>
-                  <div class="li"><span>Superficie</span><b id="sum_area">—</b></div>
-                  <div class="li"><span>Stand</span><b id="sum_stand">—</b></div>
-                  <div class="li"><span>Options</span><b id="sum_opts">—</b></div>
-                </div>
-              </div>
-
-              <div class="col-6">
-                <div class="summary">
-                  <div class="li"><span>Total HT</span><b id="sum_ht">—</b></div>
-                  <div class="li"><span>TVA (19%)</span><b id="sum_tva">—</b></div>
-                  <div class="li"><span>Total TTC</span><b id="sum_ttc">—</b></div>
-                </div>
-
-                <div class="notice" style="margin-top:12px">
-                  Après téléchargement, apposez cachet et signature puis envoyez à contact@iaexpo2026.com.
-                </div>
-
-                <div class="cta" style="margin-top:12px">
-                  <button class="btn primary" id="downloadPrefilled" type="button">Télécharger PDF pré-rempli</button>
-                  <a class="btn" download href="assets/pdf/IAEXPO2026_Reservation_Stand_FR_Interactive.pdf">Télécharger le bon de commande (PDF interactif)</a>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-  <script src="assets/js/reserve.js"></script>
+<script src="assets/js/reserve.js"></script>
 </main>
 
 <footer>
