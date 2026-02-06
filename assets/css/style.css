@@ -406,3 +406,20 @@ footer .footer-links a:hover{color:#1fd1ff}
   border-radius: 14px;
   display: block;
 }
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:16px;
+}
+
+.gallery-grid .g-item{
+  display:block;
+}
+
+.gallery-grid .g-item img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:18px;
+  display:block;
+}
