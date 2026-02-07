@@ -640,4 +640,4 @@ body.page-contact .hero{
 }
 .page-services .hero{
   background: url("/assets/img/sections/demo.jpg") center/cover no-repeat !important;
-}
+}.page-services .hero{ outline:3px solid red; }
