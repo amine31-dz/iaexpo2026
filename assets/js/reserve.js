@@ -1,7 +1,4 @@
 // assets/js/reserve.js
-
-  alert("JS chargé ✅");
-
 (function () {
   const VAT = 0.19;
 
@@ -22,6 +19,7 @@
   const PRESET_AREAS = [9, 12, 16, 24, 36, 48];
 
   const $ = (s) => document.querySelector(s);
+
   const money = (n) => {
     n = Math.round(Number(n) || 0);
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " DZD";
@@ -50,14 +48,12 @@
 
   function syncAreasUI() {
     const type = $("#stand_type")?.value || "standard";
-
     const presetWrap = $("#areaPresetWrap");
     const customWrap = $("#areaCustomWrap");
 
     toggle(presetWrap, type === "standard");
     toggle(customWrap, type === "custom");
 
-    // Fill preset select (only once)
     const presetSelect = $("#stand_area_preset");
     if (presetSelect && presetSelect.options.length <= 1) {
       PRESET_AREAS.forEach((a) => {
@@ -71,10 +67,8 @@
 
   function readArea() {
     const type = $("#stand_type")?.value || "standard";
-    if (type === "standard") {
-      return Number($("#stand_area_preset")?.value || 0);
-    }
-    // custom
+    if (type === "standard") return Number($("#stand_area_preset")?.value || 0);
+
     let a = Number($("#stand_area_custom")?.value || 0);
     if (a < 50) a = 50;
     if (a > 800) a = 800;
@@ -82,8 +76,7 @@
   }
 
   function readPosition() {
-    // position: standard / angle / ilot
-    return $("#stand_position")?.value || "standard";
+    return $("#stand_position")?.value || "standard"; // standard / angle / ilot
   }
 
   function calc() {
@@ -92,9 +85,6 @@
     const area = readArea();
 
     const pricePerM2 = type === "custom" ? PRICE_CUSTOM : PRICE_STANDARD;
-
-    // No multiplier mentioned in your PDF, so we keep same price.
-    // We just report the choice in PDF via layout_1/layout_2/layout_3 + surface_type.
     const standHT = area * pricePerM2;
 
     // Options
@@ -115,7 +105,6 @@
     const tva = totalHT * VAT;
     const totalTTC = totalHT + tva;
 
-    // Build options label for recap + PDF
     const opts = [];
     if (vip) opts.push(`Salon VIP (${money(OPT.vip)})`);
     if (backoffice) opts.push(`Back office (${money(OPT.backoffice)})`);
@@ -124,7 +113,7 @@
     if (wall6) opts.push(`Mur LED 6 m² (${money(OPT.wall6)})`);
     if (hostessChecked) opts.push(`Hôtesses (${hostessPersons} pers × ${hostessDays} jours × 5 500 = ${money(hostessTotal)})`);
 
-    // Update recap UI
+    // recap UI
     setText("sum_type", type === "standard" ? "Stand standard" : "Stand sur mesure (50–800 m²)");
     setText("sum_position", position === "angle" ? "Angle" : position === "ilot" ? "Îlot" : "Standard");
     setText("sum_area", area ? `${area} m²` : "—");
@@ -136,9 +125,7 @@
     setText("sum_tva", money(tva));
     setText("sum_ttc", money(totalTTC));
 
-    // Show hostess inputs only if checked
-    const hostessWrap = $("#hostessWrap");
-    toggle(hostessWrap, hostessChecked);
+    toggle($("#hostessWrap"), hostessChecked);
 
     return {
       type, position, area, pricePerM2,
@@ -150,12 +137,27 @@
 
   async function ensurePdfLib() {
     if (window.PDFLib) return;
-    // Should be loaded by script tag, but just in case.
     throw new Error("PDFLib not loaded");
   }
 
   function val(id) {
-    return ($("#" + id)?.value || "").trim();
+    return (document.getElementById(id)?.value || "").trim();
+  }
+
+  // Helpers “safe” (ne cassent pas si champ absent)
+  function safeText(form, name, value) {
+    try {
+      const f = form.getTextField(name);
+      f.setText(value ?? "");
+    } catch (_) {}
+  }
+
+  function safeCheck(form, name, on) {
+    try {
+      const f = form.getCheckBox(name);
+      if (on) f.check();
+      else f.uncheck();
+    } catch (_) {}
   }
 
   async function downloadPrefilled() {
@@ -163,83 +165,70 @@
     const data = calc();
 
     const pdfUrl = getPdfPath();
-    const existingPdfBytes = await fetch(pdfUrl).then((r) => r.arrayBuffer());
+    const r = await fetch(pdfUrl);
+    if (!r.ok) throw new Error("PDF introuvable: " + pdfUrl);
+    const existingPdfBytes = await r.arrayBuffer();
 
     const { PDFDocument } = window.PDFLib;
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
-
     const form = pdfDoc.getForm();
+
+    // Debug (optionnel)
     console.log("===== CHAMPS PDF =====");
-form.getFields().forEach(f => console.log(f.getName()));
+    form.getFields().forEach(f => console.log(f.getName()));
 
-    // ---- Exhibitor fields (PDF) ----
-    // (These names come from your FR interactive PDF)
-    form.getTextField("company").setText(val("company"));
-    form.getTextField("activity").setText(val("activity"));
-    form.getTextField("address").setText(val("address"));
-    form.getTextField("country").setText(val("country"));
-    form.getTextField("city").setText(val("city"));
-    form.getTextField("phone").setText(val("phone"));
-    form.getTextField("email").setText(val("email"));
-    form.getTextField("contact").setText(val("contact"));
+    // ---- Exposant ----
+    safeText(form, "company", val("company"));
+    safeText(form, "activity", val("activity"));
+    safeText(form, "address", val("address"));
+    safeText(form, "country", val("country"));
+    safeText(form, "city", val("city"));
+    safeText(form, "phone", val("phone"));
+    safeText(form, "email", val("email"));
+    safeText(form, "contact", val("contact"));
 
-    // ---- Stand / surfaces (PDF) ----
-    form.getTextField("surface_type").setText(
-      data.type === "standard" ? "Stand standard" : "Stand sur mesure (50–800 m²)"
-    );
-    form.getTextField("surface_choice").setText(String(data.area || ""));
-    form.getTextField("price_applied").setText(String(data.pricePerM2));
-    form.getTextField("total_stand_ht").setText(String(Math.round(data.standHT)));
+    // ---- Stand / Surfaces ----
+    // Dans ton PDF, les champs qui existent (d’après ta console) : area, rate, standsubtotal
+    safeText(form, "area", String(data.area || ""));
+    safeText(form, "rate", String(Math.round(data.pricePerM2 || 0)));
+    safeText(form, "standsubtotal", String(Math.round(data.standHT || 0)));
 
-    // Layout checkboxes (Standard / Angle / Îlot)
-    // layout_1 = Standard, layout_2 = Angle, layout_3 = Îlot
-    // For custom stand, we uncheck layout_1 and still check angle/ilot if chosen.
-    const ck = (name, on) => {
-      const f = form.getCheckBox(name);
-      if (on) f.check();
-      else f.uncheck();
-    };
+    // Layout checkboxes
+    safeCheck(form, "layout_1", data.type === "standard" && data.position === "standard");
+    safeCheck(form, "layout_2", data.position === "angle");
+    safeCheck(form, "layout_3", data.position === "ilot");
 
-    ck("layout_1", data.type === "standard" && data.position === "standard");
-    ck("layout_2", data.position === "angle");
-    ck("layout_3", data.position === "ilot");
+    // ---- Options ----
+    safeCheck(form, "opt_1", !!$("#opt_vip")?.checked);
+    safeCheck(form, "opt_2", !!$("#opt_backoffice")?.checked);
+    safeCheck(form, "opt_3", !!$("#opt_posterled")?.checked);
+    safeCheck(form, "opt_4", !!$("#opt_wall2")?.checked);
+    safeCheck(form, "opt_5", !!$("#opt_wall6")?.checked);
+    safeCheck(form, "opt_6", !!$("#opt_hostess")?.checked);
 
-    // ---- Options (PDF) ----
-    ck("opt_1", !!$("#opt_vip")?.checked);
-    ck("opt_2", !!$("#opt_backoffice")?.checked);
-    ck("opt_3", !!$("#opt_posterled")?.checked);
-    ck("opt_4", !!$("#opt_wall2")?.checked);
-    ck("opt_5", !!$("#opt_wall6")?.checked);
-    ck("opt_6", !!$("#opt_hostess")?.checked);
+    safeText(form, "hostess_persons", data.hostessChecked ? String(data.hostessPersons || "") : "");
+    safeText(form, "hostess_days", data.hostessChecked ? String(data.hostessDays || "") : "");
+    safeText(form, "hostess_total", data.hostessChecked ? String(Math.round(data.hostessTotal || 0)) : "");
 
-    form.getTextField("hostess_persons").setText(data.hostessChecked ? String(data.hostessPersons || "") : "");
-    form.getTextField("hostess_days").setText(data.hostessChecked ? String(data.hostessDays || "") : "");
-    form.getTextField("hostess_total").setText(data.hostessChecked ? String(Math.round(data.hostessTotal)) : "");
+    // Totaux (si ces champs existent)
+    safeText(form, "tot_1", String(Math.round(data.optionsHT || 0)));
+    safeText(form, "tot_2", String(Math.round(data.tva || 0)));
+    safeText(form, "tot_3", String(Math.round(data.totalHT || 0)));
+    safeText(form, "tot_4", String(Math.round(data.totalTTC || 0)));
 
-    // Totals boxes (page options)
-    form.getTextField("tot_1").setText(String(Math.round(data.optionsHT)));
-    form.getTextField("tot_2").setText(String(Math.round(data.tva)));
-    form.getTextField("tot_3").setText(String(Math.round(data.totalHT)));
-    form.getTextField("tot_4").setText(String(Math.round(data.totalTTC)));
-
-    // Global recap (page 3)
-    form.getTextField("grand_1").setText(String(Math.round(data.totalHT)));
-    form.getTextField("grand_2").setText(String(Math.round(data.tva)));
-    form.getTextField("grand_3").setText(String(Math.round(data.totalTTC)));
-
-    // Keep form editable (DO NOT flatten)
-    // form.flatten(); // <- NON
+    safeText(form, "grand_1", String(Math.round(data.totalHT || 0)));
+    safeText(form, "grand_2", String(Math.round(data.tva || 0)));
+    safeText(form, "grand_3", String(Math.round(data.totalTTC || 0)));
 
     const pdfBytes = await pdfDoc.save();
 
     const blob = new Blob([pdfBytes], { type: "application/pdf" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = getLang() === "en"
-      ? "IAEXPO2026_Booth_Booking_Prefilled.pdf"
-      : getLang() === "ar"
-      ? "IAEXPO2026_حجز_جناح_معبأ.pdf"
-      : "IAEXPO2026_Reservation_Stand_Prerempli.pdf";
+    a.download =
+      getLang() === "en" ? "IAEXPO2026_Booth_Booking_Prefilled.pdf" :
+      getLang() === "ar" ? "IAEXPO2026_حجز_جناح_معبأ.pdf" :
+      "IAEXPO2026_Reservation_Stand_Prerempli.pdf";
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -252,8 +241,11 @@ form.getFields().forEach(f => console.log(f.getName()));
       el.addEventListener("input", calc);
     });
 
-    const btn = $("#downloadPrefilled");
-    if (btn) btn.addEventListener("click", downloadPrefilled);
+    // accepte les 2 ids
+    const btn1 = document.getElementById("downloadPrefilled");
+    const btn2 = document.getElementById("btnPdf");
+    if (btn1) btn1.addEventListener("click", downloadPrefilled);
+    if (btn2) btn2.addEventListener("click", downloadPrefilled);
 
     const typeSelect = $("#stand_type");
     if (typeSelect) {
