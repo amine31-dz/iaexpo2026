@@ -624,7 +624,7 @@ body.menu-open {
 .page-services .hero{ background: url("assets/img/sections/demo.jpg") center/cover no-repeat !important; }
 .page-expo .hero{ background: url("assets/img/sections/expo.jpg") center/cover no-repeat !important; }
 .page-gallery .hero{ background: url("assets/img/sections/networking.jpg") center/cover no-repeat !important; }
-.page-contact .hero{ background: url("assets/img/sections/conference.jpg") center/cover no-repeat !important; }
+.page-contact .hero{ background: url("assets/img/sections/service.jpg") center/cover no-repeat !important; }
 .page-contact .hero{
   background: url("/assets/img/sections/contact.jpg") center/cover no-repeat !important;
 }
