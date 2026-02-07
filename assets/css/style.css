@@ -606,3 +606,21 @@ body.menu-open {
   border: 1px solid rgba(255,255,255,0.2);
   font-weight: 600;
 }
+/* --- FIX langues dans menu mobile --- */
+@media (max-width: 900px){
+  .drawer { 
+    overflow: auto;          /* permet scroll */
+    padding-bottom: 90px;    /* laisse place aux boutons */
+  }
+
+  .lang{
+    display: flex !important;
+    gap: 10px;
+    justify-content: center;
+    position: fixed;         /* toujours visible */
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 9999;
+  }
+}
