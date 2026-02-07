@@ -628,3 +628,10 @@ body.menu-open {
 .page-contact .hero{
   background: url("/assets/img/sections/contact.jpg") center/cover no-repeat !important;
 }
+/* ===== Background par page (TOUT EN BAS) ===== */
+body.page-contact .hero{
+  background-image: url("assets/img/sections/conference.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
