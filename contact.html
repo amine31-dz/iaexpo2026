@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>IA Expo 2026</title>
-  <meta name="description" content="IA Expo 2026 — Oran"/>
-  <link rel="stylesheet" href="assets/css/style.css"/>
+  <meta content="IA Expo 2026 — Oran" name="description"/>
+  <link href="assets/css/style.css" rel="stylesheet"/>
   <script defer src="assets/js/main.js"></script>
 </head>
 
@@ -14,14 +14,9 @@
 <header>
   <div class="container navbar">
 
-    <!-- ✅ UN SEUL <a> pour la marque -->
     <a class="brand" href="index.html">
       <span class="logo">
-        <img
-          class="logo-img"
-          src="assets/img/ogo-iaexpo2026.png.jpeg"
-          alt="IA Expo 2026"
-        />
+        <img alt="IA Expo 2026" class="logo-img" src="assets/img/ogo-iaexpo2026.png.jpeg"/>
       </span>
 
       <span>
@@ -49,11 +44,11 @@
     <button aria-label="Menu" class="menu-toggle burger" id="menuToggle" type="button">
       <span></span><span></span><span></span>
     </button>
+
   </div>
 
   <!-- Mobile drawer -->
   <div aria-hidden="true" class="drawer-overlay" id="drawerOverlay"></div>
-
   <aside aria-label="Mobile menu" class="mobile-drawer" id="mobileDrawer">
     <div class="mobile-drawer-head">
       <div class="brand" style="gap:10px">
@@ -73,19 +68,20 @@
       <a class="active" href="contact.html">Contact <span>›</span></a>
     </div>
 
-    <!-- ✅ liens langues corrects pour contact -->
     <div aria-label="Language" class="drawer-lang">
-      <a class="active" href="contact.html">FR</a>
+      <a href="contact.html">FR</a>
       <a href="contact-en.html">EN</a>
       <a href="contact-ar.html">AR</a>
     </div>
   </aside>
 </header>
 
-<!-- ✅ HERO (pour background par page .page-contact .hero) -->
+<!-- ✅ HERO obligatoire pour l'image de fond -->
 <section class="hero">
   <div class="container">
+    <div class="kicker"><span class="dot"></span> Contact</div>
     <h1>Contact</h1>
+    <p class="lead">Besoin d’informations supplémentaires ? Contactez-nous directement.</p>
   </div>
 </section>
 
@@ -94,24 +90,16 @@
     <div class="col-12">
       <div class="card">
         <div class="inner">
-          <h1 style="font-size:34px;margin:10px 0 8px">Contact</h1>
-          <hr class="sep"/>
-          <div class="notice">
-            Besoin d’informations supplémentaires ? Contactez-nous directement.
-          </div>
+
+          <h2>Star Event Agency</h2>
+          <p><strong>Entreprise des Foires et Expositions</strong></p>
+          <p><strong>Mob:</strong> +213 771 724 051</p>
+          <p><strong>Email:</strong> contact@iaexpo2026.com</p>
+          <p><strong>Backup:</strong> stareventdz@gmail.com</p>
+          <p><strong>Adresse:</strong> résidence belle de jour, Boulevard milinium POS3-22, Bloc D, 1ère étage, Hai khemisti, Oran</p>
+
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="contact-info">
-      <h2>Star Event Agency</h2>
-      <p><strong>Entreprise des Foires et Expositions</strong></p>
-      <p><strong>Mob:</strong> +213 771 724 051</p>
-      <p><strong>Email:</strong> contact@iaexpo2026.com</p>
-      <p><strong>Backup:</strong> stareventdz@gmail.com</p>
-      <p><strong>Adresse:</strong> résidence belle de jour, Boulevard milinium POS3-22, Bloc D, 1ère étage, Hai khemisti, Oran</p>
     </div>
   </div>
 </main>
@@ -120,7 +108,7 @@
   <div class="container footer-grid">
     <div>
       <div class="footer-brand">
-        <img class="footer-logo" src="assets/img/logo-iaexpo.svg" alt="IA Expo 2026"/>
+        <img alt="IA Expo 2026" class="footer-logo" src="assets/img/ogo-iaexpo2026.png.jpeg"/>
         <div>
           <div style="font-weight:900;font-size:18px">IA Expo 2026</div>
           <div class="small">Star Event Agency · Oran</div>
@@ -149,6 +137,5 @@
 </footer>
 
 <div aria-live="polite" class="toast" id="toast"></div>
-
 </body>
 </html>
