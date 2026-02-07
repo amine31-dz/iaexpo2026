@@ -618,3 +618,28 @@ body.menu-open {
   background: rgba(8,12,20,.96);
   padding-bottom: 12px;
 }
+/* ===== Background par page ===== */
+
+.page-home .hero{
+  background: url("/assets/img/sections/expo.jpg") center/cover no-repeat;
+}
+
+.page-about .hero{
+  background: url("/assets/img/sections/conference.jpg") center/cover no-repeat;
+}
+
+.page-services .hero{
+  background: url("/assets/img/sections/demo.jpg") center/cover no-repeat;
+}
+
+.page-expo .hero{
+  background: url("/assets/img/sections/expo.jpg") center/cover no-repeat;
+}
+
+.page-gallery .hero{
+  background: url("/assets/img/sections/networking.jpg") center/cover no-repeat;
+}
+
+.page-contact .hero{
+  background: url("/assets/img/sections/conference.jpg") center/cover no-repeat;
+  }
