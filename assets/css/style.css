@@ -635,3 +635,6 @@ body.page-contact .hero{
   background-position: center;
   background-repeat: no-repeat;
 }
+body.page-contact .hero{
+  outline: 3px solid red;
+}
