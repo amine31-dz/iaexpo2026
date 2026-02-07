@@ -643,3 +643,10 @@ body.menu-open {
 .page-contact .hero{
   background: url("/assets/img/sections/conference.jpg") center/cover no-repeat;
   }
+/* ===== Background par page (TOUT EN BAS) ===== */
+.page-home .hero{ background: url("/assets/img/sections/expo.jpg") center/cover no-repeat !important; }
+.page-about .hero{ background: url("/assets/img/sections/conference.jpg") center/cover no-repeat !important; }
+.page-services .hero{ background: url("/assets/img/sections/demo.jpg") center/cover no-repeat !important; }
+.page-expo .hero{ background: url("/assets/img/sections/expo.jpg") center/cover no-repeat !important; }
+.page-gallery .hero{ background: url("/assets/img/sections/networking.jpg") center/cover no-repeat !important; }
+.page-contact .hero{ background: url("/assets/img/sections/conference.jpg") center/cover no-repeat !important; }
