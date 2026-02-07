@@ -214,8 +214,15 @@ body[dir="rtl"] .li{flex-direction:row-reverse}
   display:grid; place-items:center;
 }
 .drawer-links{
-  display:flex; flex-direction:column; gap:10px;
-  overflow:auto; padding-right:4px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+
+  flex: 1;          /* ✅ prend l’espace restant */
+  min-height: 0;    /* ✅ obligatoire pour que le scroll marche en flex */
+
+  overflow:auto;
+  padding-right:4px;
   -webkit-overflow-scrolling:touch;
 }
 .drawer-links a{
