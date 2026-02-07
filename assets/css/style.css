@@ -626,5 +626,5 @@ body.menu-open {
 .page-gallery .hero{ background: url("assets/img/sections/networking.jpg") center/cover no-repeat !important; }
 .page-contact .hero{ background: url("assets/img/sections/conference.jpg") center/cover no-repeat !important; }
 .page-contact .hero{
-  background: url("/assets/img/sections/conference.jpg") center/cover no-repeat !important;
+  background: url("/assets/img/sections/contact.jpg") center/cover no-repeat !important;
 }
