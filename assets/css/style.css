@@ -557,3 +557,15 @@ body{
   position:relative;
   z-index:1;
 }
+/* --- Mobile menu fix --- */
+body.menu-open {
+  overflow: hidden;
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+}
