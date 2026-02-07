@@ -569,3 +569,27 @@ body.menu-open {
   overflow-y: auto;
   backdrop-filter: blur(10px);
 }
+/* ===== Mobile Contact Fix ===== */
+@media (max-width: 640px) {
+
+  main {
+    padding-top: 80px;
+  }
+
+  section,
+  .section,
+  .card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .contact,
+  .contact-section {
+    padding: 16px;
+  }
+
+}
