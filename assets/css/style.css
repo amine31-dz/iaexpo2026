@@ -600,16 +600,15 @@ body.menu-open {
   }
 
 }
-.mobile-drawer .lang {
-  display: flex !important;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 20px;
-}
-
-.mobile-drawer .lang a {
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.2);
-  font-weight: 600;
+./* ✅ Langues visibles dans le drawer mobile */
+@media (max-width: 900px){
+  .drawer-lang{
+    display:flex !important;
+    gap:10px;
+    justify-content:center;
+  }
+  .drawer-lang a{
+    flex:1;
+    text-align:center;
+  }
 }
