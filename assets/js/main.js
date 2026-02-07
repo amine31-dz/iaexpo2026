@@ -6,12 +6,14 @@
 
   function openDrawer(){
     body.classList.add("drawer-open");
-    setTimeout(()=>closeBtn && closeBtn.focus(), 0);
-  }
+  body.classList.add("menu-open"); // 
+  setTimeout(()=>closeBtn && closeBtn.focus(), 0);
+}
   function closeDrawer(){
     body.classList.remove("drawer-open");
-    openBtn && openBtn.focus();
-  }
+  body.classList.remove("menu-open"); // 
+  openBtn && openBtn.focus();
+}
 
   if(openBtn) openBtn.addEventListener("click", openDrawer);
   if(closeBtn) closeBtn.addEventListener("click", closeDrawer);
