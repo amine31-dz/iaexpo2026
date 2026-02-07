@@ -600,7 +600,7 @@ body.menu-open {
   }
 
 }
-./* ✅ Langues visibles dans le drawer mobile */
+/* ✅ Langues visibles dans le drawer mobile */
 @media (max-width: 900px){
   .drawer-lang{
     display:flex !important;
@@ -619,34 +619,9 @@ body.menu-open {
   padding-bottom: 12px;
 }
 /* ===== Background par page ===== */
-
-.page-home .hero{
-  background: url("/assets/img/sections/expo.jpg") center/cover no-repeat;
-}
-
-.page-about .hero{
-  background: url("/assets/img/sections/conference.jpg") center/cover no-repeat;
-}
-
-.page-services .hero{
-  background: url("/assets/img/sections/demo.jpg") center/cover no-repeat;
-}
-
-.page-expo .hero{
-  background: url("/assets/img/sections/expo.jpg") center/cover no-repeat;
-}
-
-.page-gallery .hero{
-  background: url("/assets/img/sections/networking.jpg") center/cover no-repeat;
-}
-
-.page-contact .hero{
-  background: url("/assets/img/sections/conference.jpg") center/cover no-repeat;
-  }
-/* ===== Background par page (TOUT EN BAS) ===== */
-.page-home .hero{ background: url("/assets/img/sections/expo.jpg") center/cover no-repeat !important; }
-.page-about .hero{ background: url("/assets/img/sections/conference.jpg") center/cover no-repeat !important; }
-.page-services .hero{ background: url("/assets/img/sections/demo.jpg") center/cover no-repeat !important; }
-.page-expo .hero{ background: url("/assets/img/sections/expo.jpg") center/cover no-repeat !important; }
-.page-gallery .hero{ background: url("/assets/img/sections/networking.jpg") center/cover no-repeat !important; }
-.page-contact .hero{ background: url("/assets/img/sections/conference.jpg") center/cover no-repeat !important; }
+.page-home .hero{ background: url("assets/img/sections/expo.jpg") center/cover no-repeat !important; }
+.page-about .hero{ background: url("assets/img/sections/conference.jpg") center/cover no-repeat !important; }
+.page-services .hero{ background: url("assets/img/sections/demo.jpg") center/cover no-repeat !important; }
+.page-expo .hero{ background: url("assets/img/sections/expo.jpg") center/cover no-repeat !important; }
+.page-gallery .hero{ background: url("assets/img/sections/networking.jpg") center/cover no-repeat !important; }
+.page-contact .hero{ background: url("assets/img/sections/conference.jpg") center/cover no-repeat !important; }
