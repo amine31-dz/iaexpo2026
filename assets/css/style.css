@@ -381,17 +381,22 @@ footer .footer-links a:hover{color:#1fd1ff}
   .feature img{ height: 150px; }
   .g-item img{ height: 160px; }
 }
-/* ===== Logo size fix ===== */
-.logo-img{
-  width: 160px;
-  height: auto;
-  display: block;
+/* ===== Fix logo header ===== */
+.brand .logo{
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  display: grid;
+  place-items: center;
 }
 
-@media (max-width: 768px){
-  .logo-img{
-    width: 120px;
-  }
+.logo-img{
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+}
 }
 /* ===== Gallery FIX ===== */
 .paper .gallery-grid{
