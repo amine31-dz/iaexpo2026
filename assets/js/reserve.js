@@ -187,41 +187,51 @@
     safeText(form, "email", val("email"));
     safeText(form, "contact", val("contact"));
 
-    // ---- Stand / Surfaces ----
-    // Dans ton PDF, les champs qui existent (d’après ta console) : area, rate, standsubtotal
-    safeText(form, "area", String(data.area || ""));
-    safeText(form, "rate", String(Math.round(data.pricePerM2 || 0)));
-    safeText(form, "standsubtotal", String(Math.round(data.standHT || 0)));
+   // ---- Stand / Surfaces ----
+// Dans ton PDF, les champs qui existent : area, rate, standsubtotal
+safeText(form, "area", String(data.area ?? ""));
+safeText(form, "rate", String(Math.round(data.pricePerM2 ?? 0)));
+safeText(form, "standsubtotal", String(Math.round(data.standHT ?? 0)));
 
-    // Layout checkboxes
-    safeCheck(form, "layout_1", data.type === "standard" && data.position === "standard");
-    safeCheck(form, "layout_2", data.position === "angle");
-    safeCheck(form, "layout_3", data.position === "ilot");
+// ---- Type d'implantation (non tarifé) ----
+// IMPORTANT: ne dépend PAS du type de pack, seulement de data.position
+safeCheck(form, "layout_1", data.position === "standard");
+safeCheck(form, "layout_2", data.position === "angle");
+safeCheck(form, "layout_3", data.position === "ilot");
 
-    // ---- Options ----
-    safeCheck(form, "opt_1", !!$("#opt_vip")?.checked);
-    safeCheck(form, "opt_2", !!$("#opt_backoffice")?.checked);
-    safeCheck(form, "opt_3", !!$("#opt_posterled")?.checked);
-    safeCheck(form, "opt_4", !!$("#opt_wall2")?.checked);
-    safeCheck(form, "opt_5", !!$("#opt_wall6")?.checked);
-    safeCheck(form, "opt_6", !!$("#opt_hostess")?.checked);
+// ---- Options ----
+// sécurise si l’élément n’existe pas (évite crash)
+const isChecked = (sel) => !!document.querySelector(sel)?.checked;
 
-    safeText(form, "hostess_persons", data.hostessChecked ? String(data.hostessPersons || "") : "");
-    safeText(form, "hostess_days", data.hostessChecked ? String(data.hostessDays || "") : "");
-    safeText(form, "hostess_total", data.hostessChecked ? String(Math.round(data.hostessTotal || 0)) : "");
+safeCheck(form, "opt_1", isChecked("#opt_vip"));
+safeCheck(form, "opt_2", isChecked("#opt_backoffice"));
+safeCheck(form, "opt_3", isChecked("#opt_posterled"));
+safeCheck(form, "opt_4", isChecked("#opt_wall2"));
+safeCheck(form, "opt_5", isChecked("#opt_wall6"));
+safeCheck(form, "opt_6", isChecked("#opt_hostess"));
 
-    // Totaux (si ces champs existent)
-    safeText(form, "tot_1", String(Math.round(data.optionsHT || 0)));
-    safeText(form, "tot_2", String(Math.round(data.tva || 0)));
-    safeText(form, "tot_3", String(Math.round(data.totalHT || 0)));
-    safeText(form, "tot_4", String(Math.round(data.totalTTC || 0)));
+// ---- Champs hôtesses (uniquement si option cochée) ----
+// 2 cas possibles : soit tu relies data.hostessChecked, soit tu relies au checkbox HTML
+const hostessChecked = (data.hostessChecked === true) || isChecked("#opt_hostess");
 
-    safeText(form, "grand_1", String(Math.round(data.totalHT || 0)));
-    safeText(form, "grand_2", String(Math.round(data.tva || 0)));
-    safeText(form, "grand_3", String(Math.round(data.totalTTC || 0)));
+safeText(form, "hostess_persons", hostessChecked ? String(data.hostessPersons ?? "") : "");
+safeText(form, "hostess_days", hostessChecked ? String(data.hostessDays ?? "") : "");
+safeText(form, "hostess_total", hostessChecked ? String(Math.round(data.hostessTotal ?? 0)) : "");
 
-    const pdfBytes = await pdfDoc.save();
+// ---- Totaux (si ces champs existent dans ton PDF) ----
+safeText(form, "tot_1", String(Math.round(data.optionsHT ?? 0)));
+safeText(form, "tot_2", String(Math.round(data.tva ?? 0)));
+safeText(form, "tot_3", String(Math.round(data.totalHT ?? 0)));
+safeText(form, "tot_4", String(Math.round(data.totalTTC ?? 0)));
 
+safeText(form, "grand_1", String(Math.round(data.totalHT ?? 0)));
+safeText(form, "grand_2", String(Math.round(data.tva ?? 0)));
+safeText(form, "grand_3", String(Math.round(data.totalTTC ?? 0)));
+
+// ✅ Verrouille les champs (imprimable, mais non modifiable après téléchargement)
+form.flatten();
+
+const pdfBytes = await pdfDoc.save();
     const blob = new Blob([pdfBytes], { type: "application/pdf" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
