@@ -641,3 +641,17 @@ body.page-contact .hero{
 .page-services .hero{
   background: url("/assets/img/sections/demo.jpg") center/cover no-repeat !important;
 }.page-services .hero{ outline:3px solid red; }
+/* ===== Fix logo size (header) ===== */
+.logo-img{
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* optionnel : espace propre */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
