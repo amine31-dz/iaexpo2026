@@ -382,21 +382,33 @@ footer .footer-links a:hover{color:#1fd1ff}
   .g-item img{ height: 160px; }
 }
 /* ===== Fix logo header ===== */
-.brand .logo{
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
-  display: grid;
-  place-items: center;
+
+/* le lien brand devient une ligne (logo + texte) */
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.logo-img{
+/* le logo ne doit pas s’écraser */
+.brand .logo{
+  flex: 0 0 56px;
   width: 56px;
   height: 56px;
-  object-fit: contain;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* l'image du logo bien ronde et centrée */
+.brand img.logo-img{
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  object-position: center;
   border-radius: 50%;
   display: block;
-}
+  flex: 0 0 56px;
 }
 /* ===== Gallery FIX ===== */
 .paper .gallery-grid{
