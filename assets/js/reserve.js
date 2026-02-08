@@ -16,7 +16,8 @@
     hostess_day_person: 5500
   };
 
-  const PRESET_AREAS = [9, 12, 16, 24, 36, 48];
+  // ✅ 16 m² supprimé
+  const PRESET_AREAS = [9, 12, 24, 36, 48];
 
   const $ = (s) => document.querySelector(s);
 
@@ -54,6 +55,7 @@
     toggle(presetWrap, type === "standard");
     toggle(customWrap, type === "custom");
 
+    // Fill preset select (only once)
     const presetSelect = $("#stand_area_preset");
     if (presetSelect && presetSelect.options.length <= 1) {
       PRESET_AREAS.forEach((a) => {
@@ -69,6 +71,7 @@
     const type = $("#stand_type")?.value || "standard";
     if (type === "standard") return Number($("#stand_area_preset")?.value || 0);
 
+    // custom: 50–800
     let a = Number($("#stand_area_custom")?.value || 0);
     if (a < 50) a = 50;
     if (a > 800) a = 800;
@@ -76,7 +79,8 @@
   }
 
   function readPosition() {
-    return $("#stand_position")?.value || "standard"; // standard / angle / ilot
+    // standard / angle / ilot
+    return $("#stand_position")?.value || "standard";
   }
 
   function calc() {
@@ -97,7 +101,9 @@
     const hostessChecked = !!$("#opt_hostess")?.checked;
     const hostessPersons = Number($("#hostess_persons")?.value || 0);
     const hostessDays = Number($("#hostess_days")?.value || 0);
-    const hostessTotal = hostessChecked ? (hostessPersons * hostessDays * OPT.hostess_day_person) : 0;
+    const hostessTotal = hostessChecked
+      ? (hostessPersons * hostessDays * OPT.hostess_day_person)
+      : 0;
 
     const optionsHT = vip + backoffice + posterled + wall2 + wall6 + hostessTotal;
 
@@ -105,15 +111,20 @@
     const tva = totalHT * VAT;
     const totalTTC = totalHT + tva;
 
+    // Labels options
     const opts = [];
     if (vip) opts.push(`Salon VIP (${money(OPT.vip)})`);
     if (backoffice) opts.push(`Back office (${money(OPT.backoffice)})`);
     if (posterled) opts.push(`Poster LED (${money(OPT.posterled)})`);
     if (wall2) opts.push(`Mur LED 2 m² (${money(OPT.wall2)})`);
     if (wall6) opts.push(`Mur LED 6 m² (${money(OPT.wall6)})`);
-    if (hostessChecked) opts.push(`Hôtesses (${hostessPersons} pers × ${hostessDays} jours × 5 500 = ${money(hostessTotal)})`);
+    if (hostessChecked) {
+      opts.push(
+        `Hôtesses (${hostessPersons} pers × ${hostessDays} jours × 5 500 = ${money(hostessTotal)})`
+      );
+    }
 
-    // recap UI
+    // Recap UI
     setText("sum_type", type === "standard" ? "Stand standard" : "Stand sur mesure (50–800 m²)");
     setText("sum_position", position === "angle" ? "Angle" : position === "ilot" ? "Îlot" : "Standard");
     setText("sum_area", area ? `${area} m²` : "—");
@@ -135,23 +146,31 @@
     };
   }
 
+  // --- Load PDF-Lib if missing (safe) ---
   async function ensurePdfLib() {
     if (window.PDFLib) return;
-    throw new Error("PDFLib not loaded");
+
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js";
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+
+    if (!window.PDFLib) throw new Error("PDFLib not loaded");
   }
 
   function val(id) {
     return (document.getElementById(id)?.value || "").trim();
   }
 
-  // Helpers “safe” (ne cassent pas si champ absent)
+  // Helpers “safe”
   function safeText(form, name, value) {
     try {
-      const f = form.getTextField(name);
-      f.setText(value ?? "");
+      form.getTextField(name).setText(String(value ?? ""));
     } catch (_) {}
   }
-
   function safeCheck(form, name, on) {
     try {
       const f = form.getCheckBox(name);
@@ -173,10 +192,6 @@
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     const form = pdfDoc.getForm();
 
-    // Debug (optionnel)
-    console.log("===== CHAMPS PDF =====");
-    form.getFields().forEach(f => console.log(f.getName()));
-
     // ---- Exposant ----
     safeText(form, "company", val("company"));
     safeText(form, "activity", val("activity"));
@@ -187,51 +202,46 @@
     safeText(form, "email", val("email"));
     safeText(form, "contact", val("contact"));
 
-   // ---- Stand / Surfaces ----
-// Dans ton PDF, les champs qui existent : area, rate, standsubtotal
-safeText(form, "area", String(data.area ?? ""));
-safeText(form, "rate", String(Math.round(data.pricePerM2 ?? 0)));
-safeText(form, "standsubtotal", String(Math.round(data.standHT ?? 0)));
+    // ---- Stand / surfaces ----
+    // Champs PDF: area, rate, standsubtotal
+    safeText(form, "area", data.area || "");
+    safeText(form, "rate", Math.round(data.pricePerM2 || 0));
+    safeText(form, "standsubtotal", Math.round(data.standHT || 0));
 
-// ---- Type d'implantation (non tarifé) ----
-// IMPORTANT: ne dépend PAS du type de pack, seulement de data.position
-safeCheck(form, "layout_1", data.position === "standard");
-safeCheck(form, "layout_2", data.position === "angle");
-safeCheck(form, "layout_3", data.position === "ilot");
+    // ---- Implantation (non tarifée) ----
+    safeCheck(form, "layout_1", data.position === "standard");
+    safeCheck(form, "layout_2", data.position === "angle");
+    safeCheck(form, "layout_3", data.position === "ilot");
 
-// ---- Options ----
-// sécurise si l’élément n’existe pas (évite crash)
-const isChecked = (sel) => !!document.querySelector(sel)?.checked;
+    // ---- Options ----
+    const isChecked = (sel) => !!document.querySelector(sel)?.checked;
+    safeCheck(form, "opt_1", isChecked("#opt_vip"));
+    safeCheck(form, "opt_2", isChecked("#opt_backoffice"));
+    safeCheck(form, "opt_3", isChecked("#opt_posterled"));
+    safeCheck(form, "opt_4", isChecked("#opt_wall2"));
+    safeCheck(form, "opt_5", isChecked("#opt_wall6"));
+    safeCheck(form, "opt_6", isChecked("#opt_hostess"));
 
-safeCheck(form, "opt_1", isChecked("#opt_vip"));
-safeCheck(form, "opt_2", isChecked("#opt_backoffice"));
-safeCheck(form, "opt_3", isChecked("#opt_posterled"));
-safeCheck(form, "opt_4", isChecked("#opt_wall2"));
-safeCheck(form, "opt_5", isChecked("#opt_wall6"));
-safeCheck(form, "opt_6", isChecked("#opt_hostess"));
+    const hostessChecked = (data.hostessChecked === true) || isChecked("#opt_hostess");
+    safeText(form, "hostess_persons", hostessChecked ? (data.hostessPersons ?? "") : "");
+    safeText(form, "hostess_days", hostessChecked ? (data.hostessDays ?? "") : "");
+    safeText(form, "hostess_total", hostessChecked ? Math.round(data.hostessTotal ?? 0) : "");
 
-// ---- Champs hôtesses (uniquement si option cochée) ----
-// 2 cas possibles : soit tu relies data.hostessChecked, soit tu relies au checkbox HTML
-const hostessChecked = (data.hostessChecked === true) || isChecked("#opt_hostess");
+    // ---- Totaux ----
+    safeText(form, "tot_1", Math.round(data.optionsHT || 0));
+    safeText(form, "tot_2", Math.round(data.tva || 0));
+    safeText(form, "tot_3", Math.round(data.totalHT || 0));
+    safeText(form, "tot_4", Math.round(data.totalTTC || 0));
 
-safeText(form, "hostess_persons", hostessChecked ? String(data.hostessPersons ?? "") : "");
-safeText(form, "hostess_days", hostessChecked ? String(data.hostessDays ?? "") : "");
-safeText(form, "hostess_total", hostessChecked ? String(Math.round(data.hostessTotal ?? 0)) : "");
+    safeText(form, "grand_1", Math.round(data.totalHT || 0));
+    safeText(form, "grand_2", Math.round(data.tva || 0));
+    safeText(form, "grand_3", Math.round(data.totalTTC || 0));
 
-// ---- Totaux (si ces champs existent dans ton PDF) ----
-safeText(form, "tot_1", String(Math.round(data.optionsHT ?? 0)));
-safeText(form, "tot_2", String(Math.round(data.tva ?? 0)));
-safeText(form, "tot_3", String(Math.round(data.totalHT ?? 0)));
-safeText(form, "tot_4", String(Math.round(data.totalTTC ?? 0)));
+    // ✅ verrouille (non modifiable après téléchargement)
+    form.flatten();
 
-safeText(form, "grand_1", String(Math.round(data.totalHT ?? 0)));
-safeText(form, "grand_2", String(Math.round(data.tva ?? 0)));
-safeText(form, "grand_3", String(Math.round(data.totalTTC ?? 0)));
+    const pdfBytes = await pdfDoc.save();
 
-// ✅ Verrouille les champs (imprimable, mais non modifiable après téléchargement)
-form.flatten();
-
-const pdfBytes = await pdfDoc.save();
     const blob = new Blob([pdfBytes], { type: "application/pdf" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -251,7 +261,7 @@ const pdfBytes = await pdfDoc.save();
       el.addEventListener("input", calc);
     });
 
-    // accepte les 2 ids
+    // accepte les 2 ids (selon tes pages)
     const btn1 = document.getElementById("downloadPrefilled");
     const btn2 = document.getElementById("btnPdf");
     if (btn1) btn1.addEventListener("click", downloadPrefilled);
