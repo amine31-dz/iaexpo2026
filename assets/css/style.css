@@ -389,7 +389,12 @@ footer .footer-links a:hover{color:#1fd1ff}
   align-items: center;
   gap: 10px;
 }
-
+/* FIX définitif du placeholder bleu */
+.brand .logo{
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
 /* le logo ne doit pas s’écraser */
 .brand .logo{
   flex: 0 0 56px;
@@ -399,7 +404,14 @@ footer .footer-links a:hover{color:#1fd1ff}
   place-items: center;
   overflow: hidden;
 }
-
+.logo-img{
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  background: transparent !important;
+}
 /* l'image du logo bien ronde et centrée */
 .brand img.logo-img{
   width: 56px;
@@ -409,7 +421,7 @@ footer .footer-links a:hover{color:#1fd1ff}
   border-radius: 50%;
   display: block;
   flex: 0 0 56px;
-}
+} 
 /* ===== Gallery FIX ===== */
 .paper .gallery-grid{
   display: grid;
