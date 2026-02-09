@@ -32,9 +32,9 @@
 
   function getPdfPath() {
     const lang = getLang();
-    if (lang === "en") return "assets/pdf/IAEXPO2026_Reservation_Stand_EN_Interactive.pdf";
-    if (lang === "ar") return "assets/pdf/IAEXPO2026_Reservation_Stand_AR_Interactive.pdf";
-    return "assets/pdf/IAEXPO2026_Reservation_Stand_FR_Interactive.pdf";
+    if (lang === "en") return "/assets/pdf/IAEXPO2026_Reservation_Stand_EN_Interactive.pdf";
+    if (lang === "ar") return "/assets/pdf/IAEXPO2026_Reservation_Stand_AR_Interactive.pdf";
+    return "/assets/pdf/IAEXPO2026_Reservation_Stand_FR_Interactive.pdf";
   }
 
   function setText(id, val) {
