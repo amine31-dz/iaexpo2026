@@ -222,10 +222,27 @@
     safeCheck(form, "opt_5", isChecked("#opt_wall6"));
     safeCheck(form, "opt_6", isChecked("#opt_hostess"));
 
-    const hostessChecked = (data.hostessChecked === true) || isChecked("#opt_hostess");
-    safeText(form, "hostess_persons", hostessChecked ? (data.hostessPersons ?? "") : "");
-    safeText(form, "hostess_days", hostessChecked ? (data.hostessDays ?? "") : "");
-    safeText(form, "hostess_total", hostessChecked ? Math.round(data.hostessTotal ?? 0) : "");
+   const hostessChecked = (data.hostessChecked === true) || isChecked("#opt_hostess");
+
+// Clamp hostess days to max 4
+let hostessDays = parseInt(data.hostessDays ?? "0", 10);
+if (hostessDays > 4) {
+  hostessDays = 4;
+  const msgElement = document.getElementById("hostess_days_msg");
+  if (msgElement) {
+    msgElement.textContent = "⚠ Maximum is 4 days. Adjusted automatically.";
+  }
+} else {
+  const msgElement = document.getElementById("hostess_days_msg");
+  if (msgElement) {
+    msgElement.textContent = "";
+  }
+}
+
+safeText(form, "hostess_persons", hostessChecked ? (data.hostessPersons ?? "") : "");
+safeText(form, "hostess_days", hostessChecked ? hostessDays : "");
+safeText(form, "hostess_total", hostessChecked ? Math.round(data.hostessTotal ?? 0) : "");
+
 
     // ---- Totaux ----
     safeText(form, "tot_1", Math.round(data.optionsHT || 0));
