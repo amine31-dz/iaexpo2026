@@ -699,3 +699,7 @@ body.page-contact .hero{
 .footer-logo{
   height:50px;
 }
+.footer-placeholder{
+  margin-top: 6px;
+  opacity: 0.85;
+}
