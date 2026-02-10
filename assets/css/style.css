@@ -684,3 +684,18 @@ body.page-contact .hero{
   align-items:center;
   gap:12px;
 }
+.site-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  padding:20px;
+}
+
+.footer-placeholder{
+  font-size:14px;
+  opacity:0.8;
+}
+
+.footer-logo{
+  height:50px;
+}
