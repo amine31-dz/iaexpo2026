@@ -1,7 +1,7 @@
 {
   "name": "iaexpo2026",
   "version": "1.0.0",
-  "description": "My project",
+  "description": "Static site",
   "scripts": {
     "build": "echo 'Building...'",
     "start": "echo 'Starting...'"
