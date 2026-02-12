@@ -703,3 +703,12 @@ body.page-contact .hero{
   margin-top: 6px;
   opacity: 0.85;
 }
+/* About AR - header background */
+.header-hero-ar{
+  background:
+    linear-gradient(180deg, rgba(7,10,18,.78), rgba(7,10,18,.55)),
+    url("assets/img/sections/expo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
