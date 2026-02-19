@@ -818,3 +818,6 @@ body.page-contact .hero{
   font-size: 14px;
   opacity: .7;
 }
+[dir="rtl"] .hero-content {
+  text-align: center;
+}
