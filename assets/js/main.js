@@ -69,3 +69,36 @@ setInterval(() => {
   document.getElementById("minutes").innerText = minutes;
   document.getElementById("seconds").innerText = seconds;
 }, 1000);
+// ===== PREMIUM COUNTDOWN (IA EXPO 2026) =====
+function startCountdown() {
+  const targetDate = new Date("October 12, 2026 09:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) return;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    const d = document.getElementById("days");
+    const h = document.getElementById("hours");
+    const m = document.getElementById("minutes");
+    const s = document.getElementById("seconds");
+
+    if (!d || !h || !m || !s) return;
+
+    d.textContent = days;
+    h.textContent = hours;
+    m.textContent = minutes;
+    s.textContent = seconds;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
+
+window.addEventListener("load", startCountdown);
