@@ -87,14 +87,3 @@ function startCountdown() {
 }
 
 window.addEventListener("load", startCountdown);
-/* ===== Scroll Reveal Premium ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
